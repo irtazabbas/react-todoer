@@ -1,0 +1,1 @@
+### All functional components that are not specific to a single area and can appear in any, go here.

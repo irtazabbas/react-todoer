@@ -1,0 +1,14 @@
+@import 'styles/globals';
+@import "@material/top-app-bar/mdc-top-app-bar";
+
+.controls {
+  width: 200px;
+  top: 20px;
+  left: auto;
+  right: 30px;
+  border-radius: 4px;
+
+  -webkit-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: inset 2px 2px 5px 0px rgba(74, 74, 74, 0.75)
+}
