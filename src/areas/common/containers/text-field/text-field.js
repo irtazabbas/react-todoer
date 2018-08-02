@@ -36,7 +36,7 @@ export default class TextField extends Component {
           ref={ this.input }
           placeholder={ this.props.placeholder || 'type here' }
           defaultValue={ this.props.value }
-          onBlur={ this.props.doneEditing }
+          onBlur={ this.props.blurred }
           onKeyDown={ this.handleKeyDown } />
         <div className="mdc-line-ripple"></div>
       </div>

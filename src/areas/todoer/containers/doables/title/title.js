@@ -25,7 +25,7 @@ export default class Title extends Component {
               <TextField inTitle
                 placeholder="title"
                 value={ this.props.title }
-                doneEditing={ this.toggleEditing }
+                blurred={ this.toggleEditing }
                 enterKeyDown={ this.props.update }
                 blurOnEnter /> :
               <span className="mdc-top-app-bar__title">
