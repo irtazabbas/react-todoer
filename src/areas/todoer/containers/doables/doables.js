@@ -23,7 +23,7 @@ export default class Doables extends Component {
         { id: random(), title: 'item 4', complete: false},
         { id: random(), title: 'item 5', complete: true}
       ]
-    }
+    };
   }
 
   markComplete = id => {
@@ -62,6 +62,14 @@ export default class Doables extends Component {
     this.setState({items});
   }
 
+  update = (id, text) => {
+    let items = this.state.items.slice();
+
+    items.forEach(i => i.id === id && (i.title = text));
+
+    this.setState({items});
+  }
+
   updateTitle = title => {
     this.setState({title});
   }
@@ -81,7 +89,8 @@ export default class Doables extends Component {
                   complete={ item.complete }
                   markComplete={ this.markComplete }
                   markInComplete={ this.markInComplete }
-                  remove={ this.remove } />
+                  remove={ this.remove }
+                  update={ this.update } />
               ))
             }
             <DoableAdder addDoable={ this.add } />
