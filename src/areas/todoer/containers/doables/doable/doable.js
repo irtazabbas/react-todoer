@@ -1,39 +1,82 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Icon from '@material/react-material-icon';
+
 import Button from '../../../../common/components/button/button';
+import TextField from '../../../../common/containers/text-field/text-field';
+import Aux from '../../../../../hocs/aux';
+
+import './doable.scss';
 
 
-export default props => {
-  let classes = ['mdc-list-item', 'mdc-list-item--disabled'];
-
-  let CompletionOption = (
-    <Button clicked={ () => props.markComplete(props.id) }>
-      <Icon icon="check_box_outline_blank" />
-    </Button>
-  );
-  
-  if (props.complete) {
-    classes.push('complete');
-    CompletionOption = (
-      <Button clicked={ () => props.markInComplete(props.id) }>
-        <Icon icon="check_box"/>
-      </Button>
-    );
+export default class Doable extends Component {
+  constructor() {
+    super();
+    this.state = {
+      editing: false
+    };
   }
 
-  return (
-    <li className={ classes.join(' ') }>
-      { props.text }
-      <div className="options">
-        <div className="option">
-          { CompletionOption }
-        </div>
-        <div className="option">
-          <Button clicked={ () => props.remove(props.id) }>
-            <Icon icon="clear" />
-          </Button>
-        </div>
-      </div>
-    </li>
-  );
-}
+  update = text => {
+    this.props.update(this.props.id, text);
+    this.setState({editing: false});
+  }
+
+  render() {
+    let classes = ['mdc-list-item', 'mdc-list-item--disabled', 'doable'];
+
+    let CompletionOption = (
+      <Button clicked={ () => this.props.markComplete(this.props.id) }>
+        <Icon icon="check_box_outline_blank" />
+      </Button>
+    );
+    
+    if (this.props.complete) {
+      classes.push('complete');
+      CompletionOption = (
+        <Button clicked={ () => this.props.markInComplete(this.props.id) }>
+          <Icon icon="check_box" />
+        </Button>
+      );
+    }
+
+    let content;
+
+    if (!this.state.editing) {
+      content = (
+        <Aux>
+          { this.props.text }
+          <div className="options">
+            <div className="option">
+              { CompletionOption }
+            </div>
+            <div className="option">
+              <Button clicked={ () => this.setState({editing: true}) }>
+                <Icon icon="edit" />
+              </Button>
+            </div>
+            <div className="option">
+              <Button clicked={ () => this.props.remove(this.props.id) }>
+                <Icon icon="clear" />
+              </Button>
+            </div>
+          </div>
+        </Aux>
+      );
+    } else {
+      content = (
+        <TextField 
+          fullWidth
+          value={ this.props.text }
+          enterKeyDown={ this.update }
+          blurred={ () => this.setState({editing: false}) } />
+      );
+    }
+
+
+    return (
+      <li className={ classes.join(' ') }>
+        { content }
+      </li>
+    );
+  }
+};
