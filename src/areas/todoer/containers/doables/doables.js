@@ -75,8 +75,14 @@ export default class Doables extends Component {
   }
 
   render() {
+    let classes = ['mdc-card mdc-elevation--z15', 'doables'];
+
+    if (!this.state.items.some(i => !i.complete)) {
+      classes.push('complete');
+    }
+
     return (
-      <div className="mdc-card mdc-elevation--z15 doables">
+      <div className={ classes.join(' ') }>
         <Title title={ this.state.title }
           update={ this.updateTitle } />
         <div className="body">
