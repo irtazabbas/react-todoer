@@ -3,7 +3,7 @@ import Icon from '@material/react-material-icon';
 
 import Button from '../../../../common/components/button/button';
 import TextField from '../../../../common/containers/text-field/text-field';
-import Aux from '../../../../../hocs/aux';
+import Aux from '../../../../common/hocs/aux';
 
 import './doable.scss';
 
