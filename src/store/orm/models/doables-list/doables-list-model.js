@@ -1,4 +1,4 @@
-import { Model, attr, many } from 'redux-orm';
+import { Model, attr, fk } from 'redux-orm';
 
 import { creators } from './doables-list-actions';
 import { modelNames } from '../dictionary';
@@ -12,5 +12,8 @@ DoablesList.modelName = modelNames.doablesList;
 DoablesList.fields = {
   id: attr(),
   title: attr(),
-  doables: many(modelNames.doable)
+  space: fk({
+    to: modelNames.space,
+    relatedName: 'doablesLists'
+  })
 };

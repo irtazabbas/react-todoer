@@ -1,4 +1,4 @@
-import { Model, attr, many } from 'redux-orm';
+import { Model, attr } from 'redux-orm';
 
 import { modelNames } from '../dictionary';
 
@@ -8,6 +8,5 @@ Space.modelName = modelNames.space;
 
 Space.fields = {
   id: attr(),
-  title: attr(),
-  doableLists: many(modelNames.doablesList)
+  title: attr()
 };

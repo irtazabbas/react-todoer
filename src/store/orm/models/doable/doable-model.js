@@ -1,4 +1,4 @@
-import { attr, Model } from 'redux-orm';
+import { attr, fk, Model } from 'redux-orm';
 
 import { creators } from './doable-actions';
 import reducer from './doable-reducer';
@@ -17,5 +17,9 @@ Doable.fields = {
   description: attr(),
   createdAt: attr(),
   dueDate: attr(),
-  complete: attr()
+  complete: attr(),
+  doablesList: fk({
+    to: modelNames.doablesList,
+    relatedName: 'doables'
+  })
 };
