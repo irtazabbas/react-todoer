@@ -10,4 +10,9 @@ orm.register(
   Models.Space
 );
 
+// Init selectors for all models
+Object.keys(Models).forEach(
+  key => Models[key].initSelectors && Models[key].initSelectors(orm)
+);
+
 export default orm;
