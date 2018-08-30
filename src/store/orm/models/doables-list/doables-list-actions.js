@@ -8,11 +8,10 @@ export const types = [
 
 
 export const creators = {
-  addDoable(text, doableListId) {
+  addDoable(doableListId) {
     return {
       type: types.ADD_DOABLE,
       payload: {
-        text: text || 'default text', // TODO: remove default text
         id: doableListId || random()
       }
     }
