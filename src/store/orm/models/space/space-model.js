@@ -1,8 +1,9 @@
-import { Model, attr } from 'redux-orm';
+import { attr } from 'redux-orm';
 
+import { BaseModel } from '../base-model';
 import { modelNames } from '../dictionary';
 
-export class Space extends Model {}
+export class Space extends BaseModel {}
 
 Space.modelName = modelNames.space;
 
