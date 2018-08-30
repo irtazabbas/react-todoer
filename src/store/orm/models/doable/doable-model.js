@@ -1,10 +1,11 @@
-import { attr, fk, Model } from 'redux-orm';
+import { attr, fk } from 'redux-orm';
 
+import { BaseModel } from '../base-model';
 import { creators } from './doable-actions';
 import reducer from './doable-reducer';
 import { modelNames } from '../dictionary';
 
-export class Doable extends Model {
+export class Doable extends BaseModel {
   static reducer = reducer;
   static actions = creators;
 }
