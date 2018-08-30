@@ -6,9 +6,9 @@ import DoableAdder from './doable-adder/doable-adder';
 
 import { random } from '../../../../services/utils';
 
-import './doables.scss';
+import './doables-list.scss';
 
-export default class Doables extends Component {
+export default class DoablesList extends Component {
 
   constructor() {
     super();

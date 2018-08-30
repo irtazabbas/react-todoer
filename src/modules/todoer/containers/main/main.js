@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Aux from '../../../common/hocs/aux';
 import Controls from '../../components/controls/controls';
-import Doables from '../doables/doables';
+import Doables from '../doables-list/doables-list';
 import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
