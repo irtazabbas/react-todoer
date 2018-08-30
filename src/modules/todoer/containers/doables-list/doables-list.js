@@ -8,7 +8,7 @@ import { random } from '../../../../services/utils';
 
 import './doables-list.scss';
 
-export default class DoablesList extends Component {
+export class DoablesList extends Component {
 
   constructor() {
     super();

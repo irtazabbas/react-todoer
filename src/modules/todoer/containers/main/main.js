@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Aux from '../../../common/hocs/aux';
 import Controls from '../../components/controls/controls';
-import Doables from '../doables-list/doables-list';
+import { DoablesList } from '../doables-list/doables-list';
 import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
@@ -12,7 +12,7 @@ class TodoerMain extends Component {
       <Aux>
         <Controls add={ this.props.onNewList }/>
 
-        {/* <Doables /> */}
+        {/* <DoablesList /> */}
         {/* {
           this.props.doablesLists.map(
             dl => <p>{ dl }</p>
