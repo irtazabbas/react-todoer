@@ -5,14 +5,14 @@ import { creators } from './doable-actions';
 import reducer from './doable-reducer';
 import { modelNames } from '../dictionary';
 
-export class Doable extends BaseModel {
+export class DoableModel extends BaseModel {
   static reducer = reducer;
   static actions = creators;
 }
 
-Doable.modelName = modelNames.doable;
+DoableModel.modelName = modelNames.doable;
 
-Doable.fields = {
+DoableModel.fields = {
   id: attr(),
   text: attr(),
   description: attr(),
