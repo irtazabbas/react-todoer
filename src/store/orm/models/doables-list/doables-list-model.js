@@ -5,7 +5,7 @@ import { creators } from './doables-list-actions';
 import reducer from './doables-list-reducer';
 import { modelNames } from '../dictionary';
 
-export class DoablesList extends BaseModel {
+export class DoablesListModel extends BaseModel {
   static reducer = reducer;
 
   static add(dispatch) {
@@ -19,9 +19,9 @@ export class DoablesList extends BaseModel {
   ]
 }
 
-DoablesList.modelName = modelNames.doablesList;
+DoablesListModel.modelName = modelNames.doablesList;
 
-DoablesList.fields = {
+DoablesListModel.fields = {
   id: attr(),
   title: attr(),
   space: fk({

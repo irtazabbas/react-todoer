@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Aux from '../../../common/hocs/aux';
 import Controls from '../../components/controls/controls';
 import Doables from '../doables/doables';
-import { DoablesList } from '../../../models-ref';
+import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
   render() {
@@ -25,13 +25,13 @@ class TodoerMain extends Component {
 
 const mapStateToProps = state => {
   return {
-    doablesLists: DoablesList.all_sel(state)
+    doablesLists: DoablesListModel.all_sel(state)
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    onNewList: () => DoablesList.add(dispatch)
+    onNewList: () => DoablesListModel.add(dispatch)
   }
 };
 
