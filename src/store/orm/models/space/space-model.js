@@ -3,11 +3,11 @@ import { attr } from 'redux-orm';
 import { BaseModel } from '../base-model';
 import { modelNames } from '../dictionary';
 
-export class Space extends BaseModel {}
+export class SpaceModel extends BaseModel {}
 
-Space.modelName = modelNames.space;
+SpaceModel.modelName = modelNames.space;
 
-Space.fields = {
+SpaceModel.fields = {
   id: attr(),
   title: attr()
 };
