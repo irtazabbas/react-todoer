@@ -5,14 +5,12 @@ import * as Models from './models';
 
 const orm = new ORM();
 orm.register(
-  Models.Doable,
-  Models.DoablesList,
-  Models.Space
+  ...Object.values(Models)
 );
 
 // Init selectors for all models
-Object.keys(Models).forEach(
-  key => Models[key].initSelectors && Models[key].initSelectors(orm)
+Object.values(Models).forEach(
+  Model => Model.initSelectors && Model.initSelectors(orm)
 );
 
 export default orm;
