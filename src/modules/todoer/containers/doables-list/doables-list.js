@@ -6,8 +6,6 @@ import Doable from './doable/doable';
 import DoableAdder from './doable-adder/doable-adder';
 import { DoablesListModel, DoableModel } from '../../../models-ref';
 
-import { random } from '../../../../services/utils';
-
 import './doables-list.scss';
 
 class DoablesList extends Component {
