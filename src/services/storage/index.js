@@ -2,23 +2,18 @@
 import { random } from '../utils';
 
 const keys = {
-  'doables': 'tkv-doables'
+  doablesLists: 'tkv-doables-lists'
 }
 
 class Storage {
   getDoables() {
-    let doables = localStorage.getItem(keys.doables);
+    let doables = localStorage.getItem(keys.doablesLists) || [];
+    // TODO: see what to do if none found
+    return JSON.parse(doables);
+  }
 
-    if (!doables) {
-      doables = [{
-        id: random(),
-        title: 'My doables',
-        items: []
-      }];
-      localStorage.setItem(keys.doables, doables);
-    }
-
-    return doables;
+  setDoablesLists(data) {
+    localStorage.setItem(keys.doablesLists, JSON.stringify(data));
   }
 }
 
