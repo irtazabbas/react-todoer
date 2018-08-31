@@ -8,12 +8,20 @@ export const types = [
 
 
 export const creators = {
-  addDoable(doableListId) {
+  add(id, title) {
     return {
-      type: types.ADD_DOABLE,
+      type: types.ADD_DOABLES_LIST,
       payload: {
-        id: doableListId || random()
+        id: id || random(),
+        title: title || 'My doabless' // TODO: make this more meaningful
       }
+    }
+  },
+
+  updateTitle(id, title) {
+    return {
+      type: types.UPDATE_DOABLES_LIST_TITLE,
+      payload: { id, title }
     }
   }
 };

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Title from './title/title';
 import Doable from './doable/doable';
 import DoableAdder from './doable-adder/doable-adder';
+import { DoablesListModel } from '../../../models-ref';
 
 import { random } from '../../../../services/utils';
 
 import './doables-list.scss';
 
-export class DoablesList extends Component {
+class DoablesList extends Component {
 
   constructor() {
     super();
@@ -71,7 +73,7 @@ export class DoablesList extends Component {
   }
 
   updateTitle = title => {
-    this.setState({title});
+    this.props.updateTitle(this.props.data.id, title);
   }
 
   render() {
@@ -83,12 +85,12 @@ export class DoablesList extends Component {
 
     return (
       <div className={ classes.join(' ') }>
-        <Title title={ this.state.title }
+        <Title title={ this.props.data.title }
           update={ this.updateTitle } />
         <div className="body">
           <ul className="mdc-list">
             {
-              this.state.items.map(item => (
+              this.props.data.doables.map(item => (
                 <Doable text={ item.title }
                   id={ item.id }
                   key={ item.id }
@@ -106,3 +108,11 @@ export class DoablesList extends Component {
     );
   }
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateTitle: (id, title) => DoablesListModel.updateTitle(dispatch, id, title)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(DoablesList);

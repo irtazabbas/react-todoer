@@ -9,12 +9,20 @@ export class DoablesListModel extends BaseModel {
   static reducer = reducer;
 
   static add(dispatch) {
-    dispatch(creators.addDoable());
+    dispatch(creators.add());
+  }
+
+  static updateTitle(dispatch, id, title) {
+    dispatch(creators.updateTitle(id, title));
   }
 
   static all_sel = [
     session => {
-      return session.doablesList.all().toRefArray();
+      return session.doablesList.all().toModelArray().map(
+        list => Object.assign({}, list.ref, {
+          doables: list.doables.toRefArray()
+        })
+      );
     }
   ]
 }
