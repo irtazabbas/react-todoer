@@ -2,7 +2,7 @@
 export const types = [
   'ADD_DOABLE',
   'REMOVE_DOABLE'
-].reduce((pre, key) => pre[key] = key && pre, {});
+].reduce((pre, key) => (pre[key] = key) && pre, {});
 
 
 export const creators = {
