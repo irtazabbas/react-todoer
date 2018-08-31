@@ -8,7 +8,6 @@ import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
   render() {
-    console.log(this.props.doablesLists);
     return (
       <Aux>
         <Controls add={ this.props.onNewList }/>
