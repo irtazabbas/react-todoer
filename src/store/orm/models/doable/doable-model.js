@@ -7,7 +7,26 @@ import { modelNames } from '../dictionary';
 
 export class DoableModel extends BaseModel {
   static reducer = reducer;
-  static actions = creators;
+
+  static add(dispatch, text, doablesListId) {
+    dispatch(creators.add(text, doablesListId));
+  }
+
+  static remove(dispatch, id) {
+    dispatch(creators.remove(id));
+  }
+
+  static markComplete(dispatch, id) {
+    dispatch(creators.markComplete(id));
+  }
+
+  static markInComplete(dispatch, id) {
+    dispatch(creators.markInComplete(id));
+  }
+
+  static updateText(dispatch, id, text) {
+    dispatch(creators.updateText(id, text));
+  }
 }
 
 DoableModel.modelName = modelNames.doable;

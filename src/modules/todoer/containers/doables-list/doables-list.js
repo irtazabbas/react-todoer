@@ -4,72 +4,15 @@ import { connect } from 'react-redux';
 import Title from './title/title';
 import Doable from './doable/doable';
 import DoableAdder from './doable-adder/doable-adder';
-import { DoablesListModel } from '../../../models-ref';
+import { DoablesListModel, DoableModel } from '../../../models-ref';
 
 import { random } from '../../../../services/utils';
 
 import './doables-list.scss';
 
 class DoablesList extends Component {
-
-  constructor() {
-    super();
-
-    // dummy data
-    this.state = {
-      title: 'My doables',
-      items: [
-        { id: random(), title: 'item 1', complete: true},
-        { id: random(), title: 'item 2', complete: true},
-        { id: random(), title: 'item 3', complete: false},
-        { id: random(), title: 'item 4', complete: false},
-        { id: random(), title: 'item 5', complete: true}
-      ]
-    };
-  }
-
-  markComplete = id => {
-    const items = this.state.items.slice();
-
-    items.forEach(i => i.id === id && (i.complete = true));
-
-    this.setState({items});
-  }
-
-  markInComplete = id => {
-    const items = this.state.items.slice();
-
-    items.forEach(i => i.id === id && (i.complete = false));
-
-    this.setState({items});
-  }
-
-  remove = id => {
-    const items = this.state.items.slice();
-
-    items.splice(items.findIndex(i => i.id === id), 1);
-
-    this.setState({items});
-  }
-
-  add = text => {
-    const items = this.state.items.slice();
-    
-    items.push({
-      id: random(),
-      title: text,
-      complete: false
-    });
-
-    this.setState({items});
-  }
-
-  update = (id, text) => {
-    let items = this.state.items.slice();
-
-    items.forEach(i => i.id === id && (i.title = text));
-
-    this.setState({items});
+  addDoable = text => {
+    this.props.addDoable(text, this.props.data.id);
   }
 
   updateTitle = title => {
@@ -78,8 +21,9 @@ class DoablesList extends Component {
 
   render() {
     let classes = ['mdc-card mdc-elevation--z15', 'doables'];
+    const doables = this.props.data.doables;
 
-    if (!this.state.items.some(i => !i.complete)) {
+    if (doables.length && !doables.some(i => !i.complete)) {
       classes.push('complete');
     }
 
@@ -90,18 +34,18 @@ class DoablesList extends Component {
         <div className="body">
           <ul className="mdc-list">
             {
-              this.props.data.doables.map(item => (
-                <Doable text={ item.title }
+              doables.map(item => (
+                <Doable text={ item.text }
                   id={ item.id }
                   key={ item.id }
                   complete={ item.complete }
-                  markComplete={ this.markComplete }
-                  markInComplete={ this.markInComplete }
-                  remove={ this.remove }
-                  update={ this.update } />
+                  markComplete={ this.props.markComplete }
+                  markInComplete={ this.props.markInComplete }
+                  remove={ this.props.removeDoable }
+                  update={ this.props.updateDoableText } />
               ))
             }
-            <DoableAdder addDoable={ this.add } />
+            <DoableAdder addDoable={ this.addDoable } />
           </ul>
         </div>
       </div>
@@ -111,8 +55,17 @@ class DoablesList extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateTitle: (id, title) => DoablesListModel.updateTitle(dispatch, id, title)
+    updateTitle: (id, title) => DoablesListModel.updateTitle(
+      dispatch, id, title
+    ),
+    addDoable: (text, doablesListId) => DoableModel.add(
+      dispatch, text, doablesListId
+    ),
+    removeDoable: id => DoableModel.remove(dispatch, id),
+    markComplete: id => DoableModel.markComplete(dispatch, id),
+    markInComplete: id => DoableModel.markInComplete(dispatch, id),
+    updateDoableText: (id, text) => DoableModel.updateText(dispatch, id, text)
   }
-}
+};
 
 export default connect(null, mapDispatchToProps)(DoablesList);
