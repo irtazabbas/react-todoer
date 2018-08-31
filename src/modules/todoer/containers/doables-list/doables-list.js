@@ -36,11 +36,7 @@ class DoablesList extends Component {
                 <Doable text={ item.text }
                   id={ item.id }
                   key={ item.id }
-                  complete={ item.complete }
-                  markComplete={ this.props.markComplete }
-                  markInComplete={ this.props.markInComplete }
-                  remove={ this.props.removeDoable }
-                  update={ this.props.updateDoableText } />
+                  complete={ item.complete } />
               ))
             }
             <DoableAdder addDoable={ this.addDoable } />
@@ -58,11 +54,7 @@ const mapDispatchToProps = dispatch => {
     ),
     addDoable: (text, doablesListId) => DoableModel.add(
       dispatch, text, doablesListId
-    ),
-    removeDoable: id => DoableModel.remove(dispatch, id),
-    markComplete: id => DoableModel.markComplete(dispatch, id),
-    markInComplete: id => DoableModel.markInComplete(dispatch, id),
-    updateDoableText: (id, text) => DoableModel.updateText(dispatch, id, text)
+    )
   }
 };
 

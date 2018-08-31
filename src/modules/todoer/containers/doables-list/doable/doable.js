@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Icon from '@material/react-material-icon';
 
+import { DoableModel } from '../../../../models-ref';
 import Button from '../../../../common/components/button/button';
 import TextField from '../../../../common/containers/text-field/text-field';
 import Aux from '../../../../common/hocs/aux';
@@ -8,7 +10,7 @@ import Aux from '../../../../common/hocs/aux';
 import './doable.scss';
 
 
-export default class Doable extends Component {
+class Doable extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,7 +19,7 @@ export default class Doable extends Component {
   }
 
   update = text => {
-    this.props.update(this.props.id, text);
+    this.props.updateText(this.props.id, text);
     this.setState({editing: false});
   }
 
@@ -80,3 +82,15 @@ export default class Doable extends Component {
     );
   }
 };
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    remove: id => DoableModel.remove(dispatch, id),
+    markComplete: id => DoableModel.markComplete(dispatch, id),
+    markInComplete: id => DoableModel.markInComplete(dispatch, id),
+    updateText: (id, text) => DoableModel.updateText(dispatch, id, text)
+  }
+};
+
+export default connect(null, mapDispatchToProps)(Doable);
