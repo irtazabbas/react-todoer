@@ -13,7 +13,7 @@ export const creators = {
       type: types.ADD_DOABLES_LIST,
       payload: {
         id: id || random(),
-        title: title || 'My doabless' // TODO: make this more meaningful
+        title: title || 'My doables'
       }
     }
   },
