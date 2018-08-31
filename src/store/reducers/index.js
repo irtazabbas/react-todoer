@@ -1,7 +1,6 @@
 
-import { combineReducers } from 'redux';
+import { createReducer } from 'redux-orm';
 
-export default (state, action) => {
-  // TODO: implement and break down
-  return state;
-}
+import orm from '../orm';
+
+export default createReducer(orm);

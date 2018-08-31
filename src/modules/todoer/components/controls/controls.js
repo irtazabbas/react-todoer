@@ -9,7 +9,7 @@ export default props => {
       <div className="mdc-top-app-bar__row">
         <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
           <a className="material-icons mdc-top-app-bar__action-item">
-            <Icon icon='waves' />
+            <Icon icon='add' onClick={ props.add }/>
           </a>
           <a className="material-icons mdc-top-app-bar__action-item">
             <Icon icon='clear' />
