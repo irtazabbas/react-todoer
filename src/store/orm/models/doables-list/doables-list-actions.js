@@ -8,12 +8,13 @@ export const types = {
 };
 
 export const creators = {
-  add(id, title) {
+  add(spaceId, title) {
     return {
       type: types.ADD_DOABLES_LIST,
       payload: {
-        id: id || random(),
-        title: title || 'My doables'
+        id: random(),
+        title: title || 'My doables',
+        space: spaceId
       }
     }
   },

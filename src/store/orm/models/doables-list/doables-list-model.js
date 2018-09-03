@@ -11,8 +11,8 @@ import seedData from '../seed-data';
 export class DoablesListModel extends BaseModel {
   static reducer = reducer;
 
-  static add(dispatch) {
-    dispatch(creators.add());
+  static add(dispatch, spaceId) {
+    dispatch(creators.add(spaceId));
   }
 
   static updateTitle(dispatch, id, title) {

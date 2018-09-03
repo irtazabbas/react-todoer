@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { SpaceModel } from '../../../models-ref';
+import Space from '../space/space';
 import Aux from '../../../common/hocs/aux';
-import Controls from '../../components/controls/controls';
-import DoablesList from '../doables-list/doables-list';
-import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
   render() {
-    if (!this.props.doablesLists.length) {
-      this.props.loadLists();
+    if (!this.props.spaces.length) {
+      this.props.loadAll();
 
       return <p>Loading...</p>;
     }
 
     return (
       <Aux>
-        <Controls add={ this.props.onNewList }/>
-
-        {/* <DoablesList /> */}
         {
-          this.props.doablesLists.map(
-            dl => <DoablesList key={ dl.id } data={ dl } />
+          this.props.spaces.map(
+            space => <Space data={ space } key={ space.id } />
           )
         }
       </Aux>
@@ -29,17 +25,13 @@ class TodoerMain extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    doablesLists: DoablesListModel.all_sel(state)
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onNewList: () => DoablesListModel.add(dispatch),
-    loadLists: () => DoablesListModel.load(dispatch)
-  }
-};
+const mapStateToProps = state => ({
+  spaces: SpaceModel.all_sel(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadAll: () => SpaceModel.loadAll(dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoerMain);

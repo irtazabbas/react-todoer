@@ -14,12 +14,15 @@ export default (action, DoablesList, session) => {
       break;
     case types.LOAD_DOABLES_LISTS:
       payload.doablesLists.forEach(list => {
-        const newList = DoablesList.create(list);
+        const newList = DoablesList.create(
+          Object.assign(list, { space: payload.spaceId })
+        );
+
         (list.doables || []).forEach(doable => {
           session.doable.create(
             Object.assign(doable, { doablesList: newList.id })
           );
-        })
+        });
       });
       break;
   }
