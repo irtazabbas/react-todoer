@@ -8,6 +8,12 @@ import { DoablesListModel } from '../../../models-ref';
 
 class TodoerMain extends Component {
   render() {
+    if (!this.props.doablesLists.length) {
+      this.props.loadLists();
+
+      return <p>Loading...</p>;
+    }
+
     return (
       <Aux>
         <Controls add={ this.props.onNewList }/>
@@ -31,7 +37,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onNewList: () => DoablesListModel.add(dispatch)
+    onNewList: () => DoablesListModel.add(dispatch),
+    loadLists: () => DoablesListModel.load(dispatch)
   }
 };
 

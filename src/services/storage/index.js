@@ -7,8 +7,7 @@ const keys = {
 
 class Storage {
   getDoables() {
-    let doables = localStorage.getItem(keys.doablesLists) || [];
-    // TODO: see what to do if none found
+    let doables = localStorage.getItem(keys.doablesLists) || '[]';
     return JSON.parse(doables);
   }
 
