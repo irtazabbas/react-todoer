@@ -5,6 +5,7 @@ import Icon from '@material/react-material-icon';
 import { DoableModel } from '../../../../models-ref';
 import Button from '../../../../common/components/button/button';
 import TextField from '../../../../common/containers/text-field/text-field';
+import Options from '../../../components/options/options';
 import Aux from '../../../../common/hocs/aux';
 
 import './doable.scss';
@@ -47,21 +48,15 @@ class Doable extends Component {
       content = (
         <Aux>
           { this.props.text }
-          <div className="options">
-            <div className="option">
+          <Options>
               { CompletionOption }
-            </div>
-            <div className="option">
               <Button clicked={ () => this.setState({editing: true}) }>
                 <Icon icon="edit" />
               </Button>
-            </div>
-            <div className="option">
               <Button clicked={ () => this.props.remove(this.props.id) }>
                 <Icon icon="clear" />
               </Button>
-            </div>
-          </div>
+          </Options>
         </Aux>
       );
     } else {

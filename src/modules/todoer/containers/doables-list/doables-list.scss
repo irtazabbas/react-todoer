@@ -43,22 +43,6 @@
       background-color: #00900026;
     }
 
-    .options {
-      position: absolute;
-      right: 0;
-      left: auto;
-      display: none;
-      justify-content: flex-end;
-
-      >.option {
-
-        .mdc-button {
-          padding: 0 2px;
-          min-width: 0;
-        }
-      }
-    }
-
     &:hover {
       .options {
         display: flex;
