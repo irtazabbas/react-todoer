@@ -17,6 +17,10 @@ class DoablesList extends Component {
     this.props.updateTitle(this.props.data.id, title);
   }
 
+  remove = () => {
+    this.props.remove(this.props.data.id);
+  }
+
   render() {
     let classes = ['mdc-card mdc-elevation--z15', 'doables'];
     const doables = this.props.data.doables;
@@ -28,7 +32,8 @@ class DoablesList extends Component {
     return (
       <div className={ classes.join(' ') }>
         <Title title={ this.props.data.title }
-          update={ this.updateTitle } />
+          update={ this.updateTitle }
+          removeList={ this.remove } />
         <div className="body">
           <ul className="mdc-list">
             {
@@ -54,7 +59,8 @@ const mapDispatchToProps = dispatch => {
     ),
     addDoable: (text, doablesListId) => DoableModel.add(
       dispatch, text, doablesListId
-    )
+    ),
+    remove: id => DoablesListModel.remove(dispatch, id)
   }
 };
 

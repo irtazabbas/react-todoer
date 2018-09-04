@@ -25,5 +25,10 @@ export default (action, DoablesList, session) => {
         });
       });
       break;
+    case types.REMOVE_DOABLES_LIST:
+      let target = DoablesList.withId(action.payload.id);
+      target.doables.delete();
+      target.delete();
+      break;
   }
 };

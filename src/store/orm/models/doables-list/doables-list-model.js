@@ -19,6 +19,10 @@ export class DoablesListModel extends BaseModel {
     dispatch(creators.updateTitle(id, title));
   }
 
+  static remove(dispatch, id) {
+    dispatch(creators.remove(id));
+  }
+
   static load(dispatch) {
     const doables = storageService.getDoables();
 

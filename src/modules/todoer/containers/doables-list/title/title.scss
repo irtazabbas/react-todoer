@@ -1,0 +1,15 @@
+.doables-list-title {
+  &:hover {
+    .options {
+      display: flex;
+    }
+  }
+
+  .material-icons {
+    color: white;
+  }
+
+  .mdc-top-app-bar__section .mdc-top-app-bar__title {
+    min-width: 30%;
+  }
+}
