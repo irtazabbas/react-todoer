@@ -6,9 +6,9 @@ import Options from '../../../components/options/options';
 import Button from '../../../../common/components/button/button';
 import Aux from '../../../../common/hocs/aux';
 
-import './title.scss';
+import './doables-list-head.scss';
 
-export default class Title extends Component {
+export default class DoablesListHead extends Component {
   constructor() {
     super();
     this.state = { editing: false };

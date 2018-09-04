@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Title from './title/title';
+import DoablesListHead from './doables-list-head/doables-list-head';
 import Doable from './doable/doable';
 import DoableAdder from './doable-adder/doable-adder';
 import { DoablesListModel, DoableModel } from '../../../models-ref';
@@ -31,7 +31,7 @@ class DoablesList extends Component {
 
     return (
       <div className={ classes.join(' ') }>
-        <Title title={ this.props.data.title }
+        <DoablesListHead title={ this.props.data.title }
           update={ this.updateTitle }
           removeList={ this.remove } />
         <div className="body">
