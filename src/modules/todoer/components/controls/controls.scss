@@ -2,11 +2,15 @@
 @import "@material/top-app-bar/mdc-top-app-bar";
 
 .controls {
-  width: 200px;
+  max-width: 200px;
+  min-width: 55px;
+  width: 0;
+  /* TODO: make the width variable based on the controls inside */
   top: 20px;
   left: auto;
   right: 30px;
   border-radius: 4px;
+  z-index: 5;
 
   -webkit-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.75);

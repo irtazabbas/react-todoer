@@ -11,15 +11,6 @@ export default props => {
           <a className="material-icons mdc-top-app-bar__action-item">
             <Icon icon='add' onClick={ props.add }/>
           </a>
-          <a className="material-icons mdc-top-app-bar__action-item">
-            <Icon icon='clear' />
-          </a>
-          <a className="material-icons mdc-top-app-bar__action-item">
-            <Icon icon='create' />
-          </a>
-          <a className="material-icons mdc-top-app-bar__action-item">
-            <Icon icon='next_week' />
-          </a>
         </section>
       </div>
     </header>
