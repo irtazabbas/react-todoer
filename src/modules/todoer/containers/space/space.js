@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Aux from '../../../common/hocs/aux';
 import Controls from '../../components/controls/controls';
 import DoablesList from '../doables-list/doables-list';
 import { DoablesListModel } from '../../../models-ref';
@@ -13,14 +12,14 @@ class Space extends Component {
 
   render() {
     return (
-      <Aux>
+      <div className="space">
         <Controls add={ this.onNewList }/>
         {
           this.props.data.doablesLists.map(
             dl => <DoablesList key={ dl.id } data={ dl } />
           )
         }
-      </Aux>
+      </div>
     );
   }
 }
