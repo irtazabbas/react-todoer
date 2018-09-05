@@ -19,8 +19,8 @@ class Doable extends Component {
     };
   }
 
-  update = text => {
-    this.props.updateText(this.props.id, text);
+  update = title => {
+    this.props.updateTitle(this.props.id, title);
     this.setState({editing: false});
   }
 
@@ -47,7 +47,7 @@ class Doable extends Component {
     if (!this.state.editing) {
       content = (
         <Aux>
-          { this.props.text }
+          { this.props.title }
           <Options>
               { CompletionOption }
               <Button clicked={ () => this.setState({editing: true}) }>
@@ -63,7 +63,7 @@ class Doable extends Component {
       content = (
         <TextField 
           fullWidth
-          value={ this.props.text }
+          value={ this.props.title }
           enterKeyDown={ this.update }
           blurred={ () => this.setState({editing: false}) } />
       );
@@ -84,7 +84,7 @@ const mapDispatchToProps = dispatch => {
     remove: id => DoableModel.remove(dispatch, id),
     markComplete: id => DoableModel.markComplete(dispatch, id),
     markInComplete: id => DoableModel.markInComplete(dispatch, id),
-    updateText: (id, text) => DoableModel.updateText(dispatch, id, text)
+    updateTitle: (id, title) => DoableModel.updateTitle(dispatch, id, title)
   }
 };
 

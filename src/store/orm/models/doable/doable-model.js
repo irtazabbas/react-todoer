@@ -8,8 +8,8 @@ import { modelNames } from '../dictionary';
 export class DoableModel extends BaseModel {
   static reducer = reducer;
 
-  static add(dispatch, text, doablesListId) {
-    dispatch(creators.add(text, doablesListId));
+  static add(dispatch, title, doablesListId) {
+    dispatch(creators.add(title, doablesListId));
   }
 
   static remove(dispatch, id) {
@@ -24,8 +24,8 @@ export class DoableModel extends BaseModel {
     dispatch(creators.markInComplete(id));
   }
 
-  static updateText(dispatch, id, text) {
-    dispatch(creators.updateText(id, text));
+  static updateTitle(dispatch, id, text) {
+    dispatch(creators.updateTitle(id, text));
   }
 }
 
@@ -33,7 +33,7 @@ DoableModel.modelName = modelNames.doable;
 
 DoableModel.fields = {
   id: attr(),
-  text: attr(),
+  title: attr(),
   description: attr(),
   createdAt: attr(),
   dueDate: attr(),

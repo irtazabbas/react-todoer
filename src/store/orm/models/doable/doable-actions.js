@@ -4,15 +4,15 @@ export const types = {
   REMOVE_DOABLE: 'REMOVE_DOABLE',
   MARK_COMPLETE: 'MARK_COMPLETE',
   MARK_INCOMPLETE: 'MARK_INCOMPLETE',
-  UPDATE_DOABLE_TEXT: 'UPDATE_DOABLE_TEXT'
+  UPDATE_DOABLE_TITLE: 'UPDATE_DOABLE_TITLE'
 };
 
 
 export const creators = {
-  add(text, doablesListId) {
+  add(title, doablesListId) {
     return {
       type: types.ADD_DOABLE,
-      payload: { text, doablesListId }
+      payload: { title, doablesListId }
     }
   },
 
@@ -37,10 +37,10 @@ export const creators = {
     }
   },
 
-  updateText(id, text) {
+  updateTitle(id, title) {
     return {
-      type: types.UPDATE_DOABLE_TEXT,
-      payload: { id, text }
+      type: types.UPDATE_DOABLE_TITLE,
+      payload: { id, title }
     }
   }
 };

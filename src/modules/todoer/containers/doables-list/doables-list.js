@@ -9,8 +9,8 @@ import { DoablesListModel, DoableModel } from '../../../models-ref';
 import './doables-list.scss';
 
 class DoablesList extends Component {
-  addDoable = text => {
-    this.props.addDoable(text, this.props.data.id);
+  addDoable = title => {
+    this.props.addDoable(title, this.props.data.id);
   }
 
   updateTitle = title => {
@@ -38,7 +38,7 @@ class DoablesList extends Component {
           <ul className="mdc-list">
             {
               doables.map(item => (
-                <Doable text={ item.text }
+                <Doable title={ item.title }
                   id={ item.id }
                   key={ item.id }
                   complete={ item.complete } />
@@ -57,8 +57,8 @@ const mapDispatchToProps = dispatch => {
     updateTitle: (id, title) => DoablesListModel.updateTitle(
       dispatch, id, title
     ),
-    addDoable: (text, doablesListId) => DoableModel.add(
-      dispatch, text, doablesListId
+    addDoable: (title, doablesListId) => DoableModel.add(
+      dispatch, title, doablesListId
     ),
     remove: id => DoablesListModel.remove(dispatch, id)
   }

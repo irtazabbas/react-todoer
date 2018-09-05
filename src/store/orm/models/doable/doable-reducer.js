@@ -4,7 +4,7 @@ export default (action, Doable, session) => {
   const payload = action.payload;
   switch (action.type) {
     case types.ADD_DOABLE:
-      Doable.create({text: payload.text}).doablesList =
+      Doable.create({title: payload.title}).doablesList =
         payload.doablesListId
       break;
     case types.REMOVE_DOABLE:
@@ -16,8 +16,8 @@ export default (action, Doable, session) => {
     case types.MARK_INCOMPLETE:
       Doable.withId(payload.id).set('complete', false);
       break
-    case types.UPDATE_DOABLE_TEXT:
-      Doable.withId(payload.id).set('text', payload.text);
+    case types.UPDATE_DOABLE_TITLE:
+      Doable.withId(payload.id).set('title', payload.title);
       break;
   }
 };
