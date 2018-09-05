@@ -31,6 +31,26 @@ export class DoableModel extends BaseModel {
   static updateTitle(dispatch, id, text) {
     dispatch(creators.updateTitle(id, text));
   }
+
+  /**
+   * This method recursively removes a doable and all its children and so on.
+   * 
+   * NOTE: This method uses `this.withId(...)`, which seems to error out unless
+   * `this.session` is defined, which seems to be available when accessing model
+   * through a session like `session.doable`, like what is available in reducer.
+   * Hence importing this Model directly from this file and calling this method
+   * will most probably error out.
+   * @param {*} id doable's id
+   */
+  static removeRecursively(id) {
+    let current = this.withId(id);
+
+    (current.doables.all().toRefArray() || []).forEach(
+      doable => this.removeRecursively(doable.id)
+    );
+
+    current.delete();
+  }
 }
 
 DoableModel.modelName = modelNames.doable;

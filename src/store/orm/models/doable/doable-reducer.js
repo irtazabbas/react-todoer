@@ -13,8 +13,7 @@ export default (action, Doable, session) => {
       Doable.create(payload);
       break;
     case types.REMOVE_DOABLE:
-    // TODO: need to remove recursively
-      Doable.withId(payload.id).delete();
+      Doable.removeRecursively(payload.id);
       break;
     case types.MARK_COMPLETE:
       Doable.withId(payload.id).set('complete', true);
