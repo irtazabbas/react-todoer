@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Controls from '../../components/controls/controls';
 import DoablesList from '../doables-list/doables-list';
-import { DoablesListModel } from '../../../models-ref';
+import { DoableModel } from '../../../models-ref';
 
 class Space extends Component {
   onNewList = () => {
@@ -15,7 +15,7 @@ class Space extends Component {
       <div className="space">
         <Controls add={ this.onNewList }/>
         {
-          this.props.data.doablesLists.map(
+          this.props.data.doables.map(
             dl => <DoablesList key={ dl.id } data={ dl } />
           )
         }
@@ -26,7 +26,7 @@ class Space extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onNewList: spaceId => DoablesListModel.add(dispatch, spaceId)
+    onNewList: spaceId => DoableModel.addToSpace(dispatch, spaceId)
   }
 };
 

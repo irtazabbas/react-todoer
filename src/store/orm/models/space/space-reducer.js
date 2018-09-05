@@ -10,14 +10,14 @@ export default (action, Space, session) => {
         space => {
           const newSpace = Space.create(space);
 
-          (space.doablesLists || []).forEach(list => {
-            const newList = session.doablesList.create(
-              Object.assign(list, { space: newSpace.id })
+          (space.doables || []).forEach(doable => {
+            const newDoable = session.doable.create(
+              Object.assign(doable, { space: newSpace.id })
             );
 
-            (list.doables || []).forEach(doable => {
+            (doable.doables || []).forEach(doableL2 => {
               session.doable.create(
-                Object.assign(doable, { doablesList: newList.id })
+                Object.assign(doableL2, { doable: newDoable.id })
               );
             });
           });

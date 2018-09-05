@@ -7,9 +7,13 @@ import { modelNames } from '../dictionary';
 
 export class DoableModel extends BaseModel {
   static reducer = reducer;
+  
+  static addToDoable(dispatch, doableId, title) {
+    dispatch(creators.addToDoable(doableId, title));
+  }
 
-  static add(dispatch, title, doablesListId) {
-    dispatch(creators.add(title, doablesListId));
+  static addToSpace(dispatch, spaceId, title) {
+    dispatch(creators.addToSpace(spaceId, title));
   }
 
   static remove(dispatch, id) {
@@ -38,8 +42,12 @@ DoableModel.fields = {
   createdAt: attr(),
   dueDate: attr(),
   complete: attr(),
-  doablesList: fk({
-    to: modelNames.doablesList,
+  doable: fk({
+    to: modelNames.doable,
+    relatedName: 'doables'
+  }),
+  space: fk({
+    to: modelNames.space,
     relatedName: 'doables'
   })
 };

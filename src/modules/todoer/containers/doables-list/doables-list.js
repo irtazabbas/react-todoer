@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DoablesListHead from './doables-list-head/doables-list-head';
 import Doable from './doable/doable';
 import DoableAdder from './doable-adder/doable-adder';
-import { DoablesListModel, DoableModel } from '../../../models-ref';
+import { DoableModel } from '../../../models-ref';
 
 import './doables-list.scss';
 
@@ -54,13 +54,13 @@ class DoablesList extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateTitle: (id, title) => DoablesListModel.updateTitle(
+    updateTitle: (id, title) => DoableModel.updateTitle(
       dispatch, id, title
     ),
-    addDoable: (title, doablesListId) => DoableModel.add(
-      dispatch, title, doablesListId
+    addDoable: (title, doableId) => DoableModel.addToDoable(
+      dispatch, doableId, title
     ),
-    remove: id => DoablesListModel.remove(dispatch, id)
+    remove: id => DoableModel.remove(dispatch, id)
   }
 };
 

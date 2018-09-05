@@ -20,11 +20,15 @@ export class SpaceModel extends BaseModel {
     }
   }
 
+  static getDoablesCount(spaceId) {
+    return this.withId(spaceId).doables.all().count();
+  }
+
   static all_sel = [
     session => {
       return session.space.all().toModelArray().map(
         space => Object.assign({}, space.ref, {
-          doablesLists: space.doablesLists.toModelArray().map(
+          doables: space.doables.toModelArray().map(
             list => Object.assign({}, list.ref, {
               doables: list.doables.toRefArray()
             })
