@@ -24,6 +24,10 @@ export default class TextField extends Component {
       classes.push('in-title');
     }
 
+    if (this.props.white) {
+      classes.push('white');
+    }
+
     if (this.props.fullWidth) {
       classes.push('mdc-text-field--fullwidth');
     }

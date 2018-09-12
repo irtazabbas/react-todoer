@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import Head from './head/head';
 
 import './details-drawer.scss';
 
-export default props => {
-  let topClasses = [
-    'details-drawer',
-    'mdc-elevation--z15',
-    'mdc-typography',
-    (props.open ? 'open' : '')
-  ].join(' ').trim();
+class DetailsDrawer extends Component {
+  state = {
+    editingTitle: false,
+    editingDescription: false
+  }
 
-  return (
-    // TODO: replace palceholder data and make it editable
-    <aside className={topClasses}>
-      <header>
-        <h4 className="mdc-typography--headline6">{ props.doable.title }</h4>
-        <p className="mdc-typography--subtitle1">
-          This is some description about the current doable right here
-          which can go as long as you want it to go
-        </p>
-      </header>
-      <hr/>
-      {/* TODO: do the close button properly */}
-      <button onClick={ props.close }>close</button>
-    </aside>
-  );
+  render() {
+    let topClasses = [
+      'details-drawer',
+      'mdc-elevation--z15',
+      'mdc-typography',
+      (this.props.open ? 'open' : '')
+    ].join(' ').trim();
+  
+    return (
+      // TODO: replace palceholder data and make it editable
+      <aside className={topClasses}>
+        <Head
+          title={ this.props.doable.title }
+          description={ this.props.doable.description }
+          doableId={ this.props.doable.id }
+        />
+        <hr/>
+        {/* TODO: do the close button properly */}
+        <button onClick={ this.props.close }>close</button>
+      </aside>
+    );
+  }
 }
+
+
+export default connect(null, null)(DetailsDrawer);

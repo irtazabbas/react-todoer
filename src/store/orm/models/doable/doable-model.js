@@ -28,8 +28,8 @@ export class DoableModel extends BaseModel {
     dispatch(creators.markInComplete(id));
   }
 
-  static updateTitle(dispatch, id, text) {
-    dispatch(creators.updateTitle(id, text));
+  static updateTitle(dispatch, id, title) {
+    dispatch(creators.updateTitle(id, title));
   }
 
   /**
