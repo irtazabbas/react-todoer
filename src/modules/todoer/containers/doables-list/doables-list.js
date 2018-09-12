@@ -41,7 +41,9 @@ class DoablesList extends Component {
                 <Doable title={ item.title }
                   id={ item.id }
                   key={ item.id }
-                  complete={ item.complete } />
+                  complete={ item.complete }
+                  clicked={ this.props.doableClicked }
+                />
               ))
             }
             <DoableAdder addDoable={ this.addDoable } />

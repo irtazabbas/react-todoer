@@ -20,9 +20,14 @@ export class SpaceModel extends BaseModel {
     }
   }
 
+  static setSelectedDoable(dispatch, spaceId, doableId) {
+    dispatch(creators.selectDoableForDetails(spaceId, doableId));
+  }
+
   static getDoablesCount(spaceId) {
     return this.withId(spaceId).doables.all().count();
   }
+
 
   static all_sel = [
     session => {
@@ -32,16 +37,19 @@ export class SpaceModel extends BaseModel {
             list => Object.assign({}, list.ref, {
               doables: list.doables.toRefArray()
             })
-          )
+          ),
+          selectedDoable: space.ref.selectedDoable ?
+            session.doable.withId(space.ref.selectedDoable).ref : undefined
         })
       );
     }
-  ]
+  ];
 }
 
 SpaceModel.modelName = modelNames.space;
 
 SpaceModel.fields = {
   id: attr(),
-  title: attr()
+  title: attr(),
+  selectedDoable: attr()
 };

@@ -71,7 +71,8 @@ class Doable extends Component {
 
 
     return (
-      <li className={ classes.join(' ') }>
+      <li className={ classes.join(' ') }
+        onClick={ () => this.props.clicked(this.props.id) }>
         { content }
       </li>
     );
