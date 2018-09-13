@@ -1,0 +1,15 @@
+@import 'styles/globals';
+@import '@material/textfield/mdc-text-field';
+
+// TODO: update
+.text-area {
+  textarea {
+    padding: 10px !important
+  }
+}
+
+.mdc-text-field__input {
+  &.no-padding {
+    padding: 0 !important
+  }
+}
