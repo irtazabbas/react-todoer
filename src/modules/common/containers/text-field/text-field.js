@@ -17,6 +17,14 @@ export default class TextField extends Component {
     }
   }
 
+  handleBlur = event => {
+    if (this.props.enterOnBlur && event.target.value) {
+      // can be used to save on blur
+      this.props.enterKeyDown(event.target.value);
+    }
+    this.props.blurred && this.props.blurred();
+  }
+
   render() {
     let classes = ['mdc-text-field'];
 
@@ -40,7 +48,7 @@ export default class TextField extends Component {
           ref={ this.input }
           placeholder={ this.props.placeholder || 'type here' }
           defaultValue={ this.props.value }
-          onBlur={ this.props.blurred }
+          onBlur={ this.handleBlur }
           onKeyDown={ this.handleKeyDown } />
         <div className="mdc-line-ripple"></div>
       </div>

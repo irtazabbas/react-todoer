@@ -35,7 +35,9 @@ export default class DoablesListHead extends Component {
                 value={ this.props.title }
                 blurred={ this.toggleEditing }
                 enterKeyDown={ this.props.update }
-                blurOnEnter /> :
+                blurOnEnter
+                enterOnBlur
+              /> :
               <Aux>
                 <span className="mdc-top-app-bar__title" onClick={ this.toggleEditing }>
                   { this.props.title }

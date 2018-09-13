@@ -18,6 +18,7 @@ export default props => {
         blurred={ props.toggleEditing }
         enterKeyDown={ props.updateTitle }
         blurOnEnter
+        enterOnBlur
       />
     );
   }
