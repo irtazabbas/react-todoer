@@ -30,7 +30,7 @@ export default class DoablesListHead extends Component {
           {
             this.state.editing ?
               <TextField
-                inTitle white
+                inListHead
                 placeholder="title"
                 value={ this.props.title }
                 blurred={ this.toggleEditing }

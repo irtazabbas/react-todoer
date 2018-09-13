@@ -12,16 +12,23 @@ export default props => {
   if (props.editing) {
     content = (
       <TextField
-        inTitle
+        inDetailHead
         placeholder="title"
         value={ props.title }
         blurred={ props.toggleEditing }
         enterKeyDown={ props.updateTitle }
         blurOnEnter
         enterOnBlur
+        customInputClasses={['no-padding']}
       />
     );
   }
 
-  return content;
+  return (
+    // The parent div is given the typography class same as child 'h' to make
+    // sure the parent has the same height
+    <div className="mdc-typography--headline6">
+      { content }
+    </div>
+  );
 }

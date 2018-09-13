@@ -26,25 +26,32 @@ export default class TextField extends Component {
   }
 
   render() {
-    let classes = ['mdc-text-field'];
+    // custom classes here mostly useful for controlling styling from outside
+    let parentClasses = ['mdc-text-field'].concat(
+      this.props.customParentClasses || []
+    );
+    let inputClasses = ['mdc-text-field__input'].concat(
+      this.props.customInputClasses || []
+    );
 
-    if (this.props.inTitle) {
-      classes.push('in-title');
+    if (this.props.inListHead) {
+      parentClasses.push(...['in-title', 'list-head']);
     }
 
-    if (this.props.white) {
-      classes.push('white');
+    if (this.props.inDetailHead) {
+      parentClasses.push('in-title');
+      inputClasses.push('mdc-typography--headline6');
     }
 
     if (this.props.fullWidth) {
-      classes.push('mdc-text-field--fullwidth');
+      parentClasses.push('mdc-text-field--fullwidth');
     }
 
     return (
-      <div className={ classes.join(' ') }>
+      <div className={ parentClasses.join(' ') }>
         <input type="text"
           autoFocus
-          className="mdc-text-field__input"
+          className={ inputClasses.join(' ') }
           ref={ this.input }
           placeholder={ this.props.placeholder || 'type here' }
           defaultValue={ this.props.value }
