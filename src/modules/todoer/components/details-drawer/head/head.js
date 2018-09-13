@@ -15,8 +15,16 @@ class Head extends Component {
     this.setState({ editingTitle: !this.state.editingTitle });
   }
 
+  toggleEditingDescription = () => {
+    this.setState({ editingDescription: !this.state.editingDescription });
+  }
+
   updateTitle = title => {
     this.props.updateTitle(this.props.doableId, title);
+  }
+
+  updateDescription = description => {
+    this.props.updateDescription(this.props.doableId, description);
   }
 
   render() {
@@ -31,6 +39,8 @@ class Head extends Component {
         <Description
           editing={ this.state.editingDescription }
           description={ this.props.description }
+          toggleEditing={ this.toggleEditingDescription }
+          updateDescription={ this.updateDescription }
         />
       </header>
     )
@@ -40,6 +50,9 @@ class Head extends Component {
 const mapDispatchToProps = dispatch => ({
   updateTitle: (doableId, title) => DoableModel.updateTitle(
     dispatch, doableId, title
+  ),
+  updateDescription: (doableId, description) => DoableModel.updateDescription(
+    dispatch, doableId, description
   )
 });
 

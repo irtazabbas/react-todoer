@@ -5,7 +5,8 @@ export const types = {
   REMOVE_DOABLE: 'REMOVE_DOABLE',
   MARK_COMPLETE: 'MARK_COMPLETE',
   MARK_INCOMPLETE: 'MARK_INCOMPLETE',
-  UPDATE_DOABLE_TITLE: 'UPDATE_DOABLE_TITLE'
+  UPDATE_DOABLE_TITLE: 'UPDATE_DOABLE_TITLE',
+  UPDATE_DOABLE_DESCRIPTION: 'UPDATE_DOABLE_DESCRIPTION'
 };
 
 
@@ -52,6 +53,13 @@ export const creators = {
     return {
       type: types.UPDATE_DOABLE_TITLE,
       payload: { id, title }
-    }
+    };
+  },
+
+  updateDescription(id, description) {
+    return {
+      type: types.UPDATE_DOABLE_DESCRIPTION,
+      payload: { id, description }
+    };
   }
 };

@@ -32,6 +32,10 @@ export class DoableModel extends BaseModel {
     dispatch(creators.updateTitle(id, title));
   }
 
+  static updateDescription(dispatch, id, description) {
+    dispatch(creators.updateDescription(id, description));
+  }
+
   /**
    * This method recursively removes a doable and all its children and so on.
    * 

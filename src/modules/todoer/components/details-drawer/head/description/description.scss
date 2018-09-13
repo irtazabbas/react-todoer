@@ -1,0 +1,18 @@
+@import 'styles/globals';
+
+// TODO: update
+.description {
+  padding: 15px 0;
+
+  p {
+    margin: 0;
+  }
+
+  .placeholder {
+    font-style: italic
+  }
+
+  textarea {
+    border: 1px solid $detail-drawer-p-color !important
+  }
+}

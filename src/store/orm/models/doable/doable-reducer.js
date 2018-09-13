@@ -24,5 +24,8 @@ export default (action, Doable, session) => {
     case types.UPDATE_DOABLE_TITLE:
       Doable.withId(payload.id).set('title', payload.title);
       break;
+    case types.UPDATE_DOABLE_DESCRIPTION:
+      Doable.withId(payload.id).set('description', payload.description);
+      break;
   }
 };
