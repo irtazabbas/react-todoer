@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import DoablesListHead from './doables-list-head/doables-list-head';
 import Doable from './doable/doable';
-import DoableAdder from './doable-adder/doable-adder';
+import DoableAdder from '../../components/doable-adder/doable-adder';
 import { DoableModel } from '../../../models-ref';
 
 import './doables-list.scss';

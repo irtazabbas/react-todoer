@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TextField from '../../../../common/containers/text-field/text-field';
+import TextField from '../../../common/containers/text-field/text-field';
 
 import './doable-adder.scss';
 
