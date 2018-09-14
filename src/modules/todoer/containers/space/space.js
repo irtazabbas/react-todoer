@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Controls from '../../components/controls/controls';
 import DoablesList from '../doables-list/doables-list';
 import { DoableModel } from '../../../models-ref';
-import Drawer from '../../components/details-drawer/details-drawer';
+import Drawer from '../details-drawer/details-drawer';
 import { SpaceModel } from '../../../../store/orm/models';
 
 class Space extends Component {

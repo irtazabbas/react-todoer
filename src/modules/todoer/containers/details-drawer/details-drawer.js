@@ -30,6 +30,9 @@ class DetailsDrawer extends Component {
         <hr/>
         {/* TODO: do the close button properly */}
         <button onClick={ this.props.close }>close</button>
+        <div className="body">
+          
+        </div>
       </aside>
     );
   }
