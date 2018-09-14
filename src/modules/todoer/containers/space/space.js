@@ -27,17 +27,20 @@ class Space extends Component {
 
   closeDrawer = () => {
     this.setState({ drawerOpen: false });
+    this.props.onUnselectDoable(this.props.data.id);
   }
 
   render() {
     const selectedDoable = this.props.data.selectedDoable || {};
+    
     return (
       <div className="space">
         <Controls add={ this.onNewList }/>
         <Drawer
-          open={ this.state.drawerOpen }
+          open={ this.state.drawerOpen && selectedDoable.id }
           close={ this.closeDrawer }
-          doable={ selectedDoable } />
+          doable={ selectedDoable }
+        />
         {
           this.props.data.doables.map(
             dl => <DoablesList
@@ -58,7 +61,8 @@ const mapDispatchToProps = dispatch => {
     onNewList: spaceId => DoableModel.addToSpace(dispatch, spaceId),
     onDoableClicked: (spaceId, doableId) => SpaceModel.setSelectedDoable(
       dispatch, spaceId, doableId
-    )
+    ),
+    onUnselectDoable: spaceId => SpaceModel.unselectDoable(dispatch, spaceId)
   }
 };
 

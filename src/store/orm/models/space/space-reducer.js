@@ -8,9 +8,8 @@ export default (action, Space, session) => {
     case types.LOAD_SPACES:
       payload.spaces.forEach(
         space => {
-          if (space.selectedDoable) {
-            space.selectedDoable = space.selectedDoable.id;
-          }
+          space.selectedDoable = undefined;
+
           const newSpace = Space.create(space);
 
           (space.doables || []).forEach(doable => {
@@ -29,6 +28,9 @@ export default (action, Space, session) => {
       break;
     case types.DOABLE_SELECTED_FOR_DETAILS:
       Space.withId(payload.spaceId).selectedDoable = payload.doableId;
+      break;
+    case types.DETAIL_DRAWER_CLOSED:
+      Space.withId(payload.spaceId).selectedDoable = undefined;
       break;
   }
 }

@@ -1,7 +1,8 @@
 
 export const types = {
   LOAD_SPACES: 'LOAD_SPACES',
-  DOABLE_SELECTED_FOR_DETAILS: 'DOABLE_SELECTED_FOR_DETAILS'
+  DOABLE_SELECTED_FOR_DETAILS: 'DOABLE_SELECTED_FOR_DETAILS',
+  DETAIL_DRAWER_CLOSED: 'DETAIL_DRAWER_CLOSED'
 };
 
 
@@ -17,6 +18,13 @@ export const creators = {
     return {
       type: types.DOABLE_SELECTED_FOR_DETAILS,
       payload: { spaceId, doableId }
+    };
+  },
+
+  unselectDoable(spaceId) {
+    return {
+      type: types.DETAIL_DRAWER_CLOSED,
+      payload: { spaceId }
     };
   }
 };

@@ -1,4 +1,4 @@
-import { attr } from 'redux-orm';
+import { attr, oneToOne } from 'redux-orm';
 
 import { BaseModel } from '../base-model';
 import { modelNames } from '../dictionary';
@@ -22,6 +22,10 @@ export class SpaceModel extends BaseModel {
 
   static setSelectedDoable(dispatch, spaceId, doableId) {
     dispatch(creators.selectDoableForDetails(spaceId, doableId));
+  }
+
+  static unselectDoable(dispatch, spaceId) {
+    dispatch(creators.unselectDoable(spaceId));
   }
 
   static getDoablesCount(spaceId) {
@@ -51,5 +55,5 @@ SpaceModel.modelName = modelNames.space;
 SpaceModel.fields = {
   id: attr(),
   title: attr(),
-  selectedDoable: attr()
+  selectedDoable: oneToOne(modelNames.doable, 'selectedForSpace')
 };
