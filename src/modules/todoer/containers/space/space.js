@@ -30,19 +30,21 @@ class Space extends Component {
   }
 
   render() {
+    const selectedDoable = this.props.data.selectedDoable || {};
     return (
       <div className="space">
         <Controls add={ this.onNewList }/>
         <Drawer
           open={ this.state.drawerOpen }
           close={ this.closeDrawer }
-          doable={ this.props.data.selectedDoable || {} } />
+          doable={ selectedDoable } />
         {
           this.props.data.doables.map(
             dl => <DoablesList
               key={ dl.id }
               data={ dl }
               doableClicked={ this.onDoableClicked }
+              selected={ selectedDoable.id  }
             />
           )
         }

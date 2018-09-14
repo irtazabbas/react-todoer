@@ -43,6 +43,7 @@ class DoablesList extends Component {
                   key={ item.id }
                   complete={ item.complete }
                   clicked={ this.props.doableClicked }
+                  selected={ this.props.selected === item.id }
                 />
               ))
             }

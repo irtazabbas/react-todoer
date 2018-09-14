@@ -42,6 +42,10 @@ class Doable extends Component {
       );
     }
 
+    if (this.props.selected) {
+      classes.push('selected');
+    }
+
     let content;
 
     if (!this.state.editing) {
