@@ -41,9 +41,7 @@ export class SpaceModel extends BaseModel {
             list => Object.assign({}, list.ref, {
               doables: list.doables.toRefArray()
             })
-          ),
-          selectedDoable: space.ref.selectedDoable ?
-            session.doable.withId(space.ref.selectedDoable).ref : undefined
+          )
         })
       );
     }
@@ -64,9 +62,7 @@ export class SpaceModel extends BaseModel {
             list => Object.assign({}, list.ref, {
               doables: list.doables.toRefArray()
             })
-          ),
-          selectedDoable: space.ref.selectedDoable ?
-            session.doable.withId(space.ref.selectedDoable).ref : undefined
+          )
         }
       );
     }

@@ -8,21 +8,12 @@ import Drawer from '../details-drawer/details-drawer';
 import { SpaceModel } from '../../../../store/orm/models';
 
 class Space extends Component {
-  state = {
-    drawerOpen: false
-  }
-
   onNewList = () => {
     this.props.onNewList(this.props.data.id);
   }
 
   onDoableClicked = doableId => {
     this.props.onDoableClicked(this.props.data.id, doableId);
-    this.openDrawer();
-  }
-
-  openDrawer = () => {
-    this.setState({ drawerOpen: true });
   }
 
   closeDrawer = () => {
@@ -31,15 +22,14 @@ class Space extends Component {
   }
 
   render() {
-    const selectedDoable = this.props.data.selectedDoable || {};
+    const selectedDoable = this.props.data.selectedDoable;
     
     return (
       <div className="space">
         <Controls add={ this.onNewList }/>
         <Drawer
-          open={ this.state.drawerOpen && selectedDoable.id }
+          open={ !!selectedDoable }
           close={ this.closeDrawer }
-          doable={ selectedDoable }
         />
         {
           this.props.data.doables.map(
@@ -47,7 +37,7 @@ class Space extends Component {
               key={ dl.id }
               data={ dl }
               doableClicked={ this.onDoableClicked }
-              selected={ selectedDoable.id  }
+              selected={ selectedDoable  }
             />
           )
         }

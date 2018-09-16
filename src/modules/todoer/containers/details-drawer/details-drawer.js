@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Head from './head/head';
+import { DoableModel } from '../../../models-ref';
 
 import './details-drawer.scss';
 
@@ -38,5 +39,9 @@ class DetailsDrawer extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  doable: DoableModel.getSelected_sel(state)
+});
 
-export default connect(null, null)(DetailsDrawer);
+
+export default connect(mapStateToProps, null)(DetailsDrawer);

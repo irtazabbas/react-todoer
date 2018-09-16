@@ -55,6 +55,22 @@ export class DoableModel extends BaseModel {
 
     current.delete();
   }
+
+  static getSelected_sel = [
+    session => {
+      const space = session.meta.getSpace();
+      if (!space) return {};
+
+      const doable = space.selectedDoable;
+      if (!doable) return {};
+
+      return Object.assign(
+        {},
+        doable.ref,
+        { doables: doable.doables.toRefArray() }
+      );
+    }
+  ]
 }
 
 DoableModel.modelName = modelNames.doable;
