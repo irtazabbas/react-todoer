@@ -1,4 +1,5 @@
 export const modelNames = {
   doable: 'doable',
-  space: 'space'
+  space: 'space',
+  meta: 'meta'
 };
