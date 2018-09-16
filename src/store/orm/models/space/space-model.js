@@ -48,6 +48,29 @@ export class SpaceModel extends BaseModel {
       );
     }
   ];
+
+  static get_selected_sel = [
+    session => {
+      const meta = session.meta.all().toModelArray()[0];
+      if (!meta) return;
+
+      const space = meta.selectedSpace;
+
+      return Object.assign(
+        {},
+        space.ref,
+        {
+          doables: space.doables.toModelArray().map(
+            list => Object.assign({}, list.ref, {
+              doables: list.doables.toRefArray()
+            })
+          ),
+          selectedDoable: space.ref.selectedDoable ?
+            session.doable.withId(space.ref.selectedDoable).ref : undefined
+        }
+      );
+    }
+  ]
 }
 
 SpaceModel.modelName = modelNames.space;
