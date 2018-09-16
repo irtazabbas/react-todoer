@@ -7,7 +7,7 @@ import Aux from '../../../common/hocs/aux';
 
 class TodoerMain extends Component {
   render() {
-    if (!this.props.spaces.length) {
+    if (!this.props.space) {
       this.props.loadAll();
 
       return <p>Loading...</p>;
@@ -15,11 +15,9 @@ class TodoerMain extends Component {
 
     return (
       <Aux>
-        {
-          this.props.spaces.map(
-            space => <Space data={ space } key={ space.id } />
-          )
-        }
+        <Space data={ this.props.space } />
+
+        {/* Some control for switching between spaces will go here */}
       </Aux>
     );
   }
@@ -27,7 +25,7 @@ class TodoerMain extends Component {
 
 
 const mapStateToProps = state => ({
-  spaces: SpaceModel.all_sel(state)
+  space: SpaceModel.get_selected_sel(state)
 });
 
 const mapDispatchToProps = dispatch => ({
