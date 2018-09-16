@@ -25,7 +25,7 @@ class TodoerMain extends Component {
 
 
 const mapStateToProps = state => ({
-  space: SpaceModel.get_selected_sel(state)
+  space: SpaceModel.getSelected_sel(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -49,7 +49,7 @@ export class SpaceModel extends BaseModel {
     }
   ];
 
-  static get_selected_sel = [
+  static getSelected_sel = [
     session => {
       const meta = session.meta.all().toModelArray()[0];
       if (!meta) return;
