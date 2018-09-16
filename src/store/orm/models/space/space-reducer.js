@@ -7,10 +7,12 @@ export default (action, Space, session) => {
   switch (action.type) {
     case types.LOAD_SPACES:
       payload.spaces.forEach(
-        space => {
+        (space, i) => {
           space.selectedDoable = undefined;
 
           const newSpace = Space.create(space);
+
+          if (i === 0) session.meta.create({ selectedSpace: newSpace.id });
 
           (space.doables || []).forEach(doable => {
             const newDoable = session.doable.create(
