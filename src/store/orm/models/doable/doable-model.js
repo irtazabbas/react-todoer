@@ -56,6 +56,32 @@ export class DoableModel extends BaseModel {
     current.delete();
   }
 
+  static getDoablesDeep(doable) {
+    return Object.assign(
+      {},
+      doable.ref,
+      {
+        doables: doable.doables.toModelArray().map(
+          item => DoableModel.getDoablesDeep(item)
+        )
+      }
+    );
+  }
+
+  /**
+   * Creates doables recursively
+   * 
+   * NOTE: This method seems to error unless called through a session object,
+   * like `removeRecursively` method.
+   */
+  static createDoablesDeep(doable) {
+    this.create(doable);
+
+    (doable.doables || []).forEach(item => {
+      this.createDoablesDeep(item);
+    });
+  }
+
   static getSelected_sel = [
     session => {
       const space = session.meta.getSpace();
