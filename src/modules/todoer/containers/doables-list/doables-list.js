@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import DoablesListHead from './doables-list-head/doables-list-head';
-import Doable from './doable/doable';
+import List from '../list/list';
 import DoableAdder from '../../components/doable-adder/doable-adder';
 import { DoableModel } from '../../../models-ref';
 
@@ -35,20 +35,9 @@ class DoablesList extends Component {
           update={ this.updateTitle }
           removeList={ this.remove } />
         <div className="body">
-          <ul className="mdc-list">
-            {
-              doables.map(item => (
-                <Doable title={ item.title }
-                  id={ item.id }
-                  key={ item.id }
-                  complete={ item.complete }
-                  clicked={ this.props.doableClicked }
-                  selected={ this.props.selected === item.id }
-                />
-              ))
-            }
+          <List doables={ doables } doableClicked={ this.props.doableClicked }>
             <DoableAdder addDoable={ this.addDoable } />
-          </ul>
+          </List>
         </div>
       </div>
     );
