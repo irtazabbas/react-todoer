@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Icon from '@material/react-material-icon';
 
-import { DoableModel } from '../../../../models-ref';
-import Button from '../../../../common/components/button/button';
-import TextField from '../../../../common/containers/text-field/text-field';
-import Options from '../../../components/options/options';
-import Aux from '../../../../common/hocs/aux';
+import { DoableModel } from '../../../models-ref';
+import Button from '../../../common/components/button/button';
+import TextField from '../../../common/containers/text-field/text-field';
+import Options from '../../components/options/options';
+import Aux from '../../../common/hocs/aux';
 
 import './doable.scss';
 
