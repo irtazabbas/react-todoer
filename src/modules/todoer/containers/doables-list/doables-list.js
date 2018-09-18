@@ -35,7 +35,9 @@ class DoablesList extends Component {
           update={ this.updateTitle }
           removeList={ this.remove } />
         <div className="body">
-          <List doables={ doables } doableClicked={ this.props.doableClicked }>
+          <List doables={ doables }
+            doableClicked={ this.props.doableClicked }
+            selected={ this.props.selected }>
             <DoableAdder addDoable={ this.addDoable } />
           </List>
         </div>
