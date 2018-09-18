@@ -38,9 +38,7 @@ export class SpaceModel extends BaseModel {
       return session.space.all().toModelArray().map(
         space => Object.assign({}, space.ref, {
           doables: space.doables.toModelArray().map(
-            list => Object.assign({}, list.ref, {
-              doables: list.doables.toRefArray()
-            })
+            list => session.doable.getDoablesDeep(list)
           )
         })
       );
