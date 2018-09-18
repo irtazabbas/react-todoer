@@ -12,17 +12,9 @@ export default (action, Space, session) => {
 
           if (i === 0) session.meta.create({ selectedSpace: newSpace.id });
 
-          (space.doables || []).forEach(doable => {
-            const newDoable = session.doable.create(
-              Object.assign(doable, { space: newSpace.id })
-            );
-
-            (doable.doables || []).forEach(doableL2 => {
-              session.doable.create(
-                Object.assign(doableL2, { doable: newDoable.id })
-              );
-            });
-          });
+          (space.doables || []).forEach(
+            doable => session.doable.createDoablesDeep(doable)
+          );
         }
       );
       break;
