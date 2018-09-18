@@ -30,6 +30,7 @@ class Space extends Component {
         <Drawer
           open={ !!selectedDoable }
           close={ this.closeDrawer }
+          doableClicked={ this.onDoableClicked }
         />
         {
           this.props.data.doables.map(
