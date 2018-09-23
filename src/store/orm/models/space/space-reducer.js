@@ -13,7 +13,9 @@ export default (action, Space, session) => {
           if (i === 0) session.meta.create({ selectedSpace: newSpace.id });
 
           (space.doables || []).forEach(
-            doable => session.doable.createDoablesDeep(doable)
+            doable => session.doable.createDoablesDeep(
+              Object.assign(doable, { space: newSpace.id })
+            )
           );
         }
       );
