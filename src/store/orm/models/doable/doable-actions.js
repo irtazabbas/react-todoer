@@ -1,19 +1,31 @@
 
 export const types = {
-  ADD_DOABLE: 'ADD_DOABLE',
+  ADD_DOABLE_TO_DOABLE: 'ADD_DOABLE_TO_DOABLE',
+  ADD_DOABLE_TO_SPACE: 'ADD_DOABLE_TO_SPACE',
   REMOVE_DOABLE: 'REMOVE_DOABLE',
   MARK_COMPLETE: 'MARK_COMPLETE',
   MARK_INCOMPLETE: 'MARK_INCOMPLETE',
-  UPDATE_DOABLE_TEXT: 'UPDATE_DOABLE_TEXT'
+  UPDATE_DOABLE_TITLE: 'UPDATE_DOABLE_TITLE',
+  UPDATE_DOABLE_DESCRIPTION: 'UPDATE_DOABLE_DESCRIPTION'
 };
 
 
 export const creators = {
-  add(text, doablesListId) {
+  addToDoable(doableId, title) {
     return {
-      type: types.ADD_DOABLE,
-      payload: { text, doablesListId }
+      type: types.ADD_DOABLE_TO_DOABLE,
+      payload: { title, doableId }
     }
+  },
+
+  addToSpace(spaceId, title) {
+    return {
+      type: types.ADD_DOABLE_TO_SPACE,
+      payload: {
+        title: title || 'My doables',
+        space: spaceId
+      }
+    };
   },
 
   remove(id) {
@@ -37,10 +49,17 @@ export const creators = {
     }
   },
 
-  updateText(id, text) {
+  updateTitle(id, title) {
     return {
-      type: types.UPDATE_DOABLE_TEXT,
-      payload: { id, text }
-    }
+      type: types.UPDATE_DOABLE_TITLE,
+      payload: { id, title }
+    };
+  },
+
+  updateDescription(id, description) {
+    return {
+      type: types.UPDATE_DOABLE_DESCRIPTION,
+      payload: { id, description }
+    };
   }
 };

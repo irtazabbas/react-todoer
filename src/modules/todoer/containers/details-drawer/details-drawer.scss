@@ -1,0 +1,40 @@
+@import 'styles/globals';
+@import '@material/typography/mdc-typography';
+
+$drawer-x: 350px;
+
+.details-drawer {
+  width: $drawer-x;
+  min-height: 300px;
+  max-height: 80%;
+  border-top: solid 2px $mdc-theme-primary;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  position: fixed;
+  top: 100px;
+  right: -$drawer-x;
+  z-index: 10;
+  background-color: white;
+  transition: 200ms;
+
+  &.open {
+    transform: translateX(-$drawer-x);
+    transition: 400ms;
+  }
+
+  header {
+    padding: 10px;
+    h4 {
+      margin: 0
+    }
+
+    p {
+      color: $detail-drawer-p-color
+    }
+  }
+
+  .doables {
+    width: 330px;
+  }
+}

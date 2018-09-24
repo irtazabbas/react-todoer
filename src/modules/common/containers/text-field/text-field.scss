@@ -6,11 +6,25 @@
   width: 97%;
 
   .mdc-text-field__input {
-    color: white !important;
-    caret-color: white !important;
     border-bottom: none;
     padding: 0 0 0 10px;
+  }
 
-    // TODO: update placeholder color
+  &.list-head {
+    .mdc-text-field__input {
+      color: white !important;
+      caret-color: white !important;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.25px;
+  
+      // TODO: update placeholder color
+    }
+  }
+}
+
+.mdc-text-field__input {
+  &.no-padding {
+    padding: 0 !important
   }
 }

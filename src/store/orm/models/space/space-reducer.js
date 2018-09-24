@@ -7,22 +7,26 @@ export default (action, Space, session) => {
   switch (action.type) {
     case types.LOAD_SPACES:
       payload.spaces.forEach(
-        space => {
+        (space, i) => {
           const newSpace = Space.create(space);
 
-          (space.doablesLists || []).forEach(list => {
-            const newList = session.doablesList.create(
-              Object.assign(list, { space: newSpace.id })
-            );
+          if (i === 0) session.meta.create({ selectedSpace: newSpace.id });
 
-            (list.doables || []).forEach(doable => {
-              session.doable.create(
-                Object.assign(doable, { doablesList: newList.id })
-              );
-            });
-          });
+          (space.doables || []).forEach(
+            doable => session.doable.createDoablesDeep(
+              Object.assign(doable, { space: newSpace.id })
+            )
+          );
         }
       );
+      break;
+    case types.DOABLE_SELECTED_FOR_DETAILS:
+      let target = Space.withId(payload.spaceId);
+      target.selectedDoable = payload.doableId;
+      target.drawerOpen = true;
+      break;
+    case types.DETAIL_DRAWER_CLOSED:
+      Space.withId(payload.spaceId).drawerOpen = false;
       break;
   }
 }

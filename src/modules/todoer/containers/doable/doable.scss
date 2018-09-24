@@ -1,5 +1,10 @@
 
 .doable {
+  transition: 0.2s;
+  &.selected {
+    box-shadow: 0 3px 6px #a7a7a7;
+  }
+
   .mdc-text-field {
     border-bottom: solid 1px rgba(0, 0, 0, 0.42) !important;
   }

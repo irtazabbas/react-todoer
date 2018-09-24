@@ -20,20 +20,24 @@ export default class DoablesListHead extends Component {
 
   render() {
     return (
-      <header className="doables-list-title mdc-top-app-bar mdc-top-app-bar--short"
-        >
+      <header className="
+        doables-list-title mdc-top-app-bar mdc-top-app-bar--short
+      ">
         <section className="
           mdc-top-app-bar__section
           mdc-top-app-bar__section--align-start
         ">
           {
             this.state.editing ?
-              <TextField inTitle
+              <TextField
+                inListHead
                 placeholder="title"
                 value={ this.props.title }
                 blurred={ this.toggleEditing }
                 enterKeyDown={ this.props.update }
-                blurOnEnter /> :
+                blurOnEnter
+                enterOnBlur
+              /> :
               <Aux>
                 <span className="mdc-top-app-bar__title" onClick={ this.toggleEditing }>
                   { this.props.title }

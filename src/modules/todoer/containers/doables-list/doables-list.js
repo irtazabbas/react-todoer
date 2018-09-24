@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import DoablesListHead from './doables-list-head/doables-list-head';
-import Doable from './doable/doable';
-import DoableAdder from './doable-adder/doable-adder';
-import { DoablesListModel, DoableModel } from '../../../models-ref';
+import List from '../list/list';
+import DoableAdder from '../../components/doable-adder/doable-adder';
+import { DoableModel } from '../../../models-ref';
 
 import './doables-list.scss';
 
 class DoablesList extends Component {
-  addDoable = text => {
-    this.props.addDoable(text, this.props.data.id);
+  addDoable = title => {
+    this.props.addDoable(title, this.props.data.id);
   }
 
   updateTitle = title => {
@@ -35,17 +35,11 @@ class DoablesList extends Component {
           update={ this.updateTitle }
           removeList={ this.remove } />
         <div className="body">
-          <ul className="mdc-list">
-            {
-              doables.map(item => (
-                <Doable text={ item.text }
-                  id={ item.id }
-                  key={ item.id }
-                  complete={ item.complete } />
-              ))
-            }
+          <List doables={ doables }
+            doableClicked={ this.props.doableClicked }
+            selected={ this.props.selected }>
             <DoableAdder addDoable={ this.addDoable } />
-          </ul>
+          </List>
         </div>
       </div>
     );
@@ -54,13 +48,13 @@ class DoablesList extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateTitle: (id, title) => DoablesListModel.updateTitle(
+    updateTitle: (id, title) => DoableModel.updateTitle(
       dispatch, id, title
     ),
-    addDoable: (text, doablesListId) => DoableModel.add(
-      dispatch, text, doablesListId
+    addDoable: (title, doableId) => DoableModel.addToDoable(
+      dispatch, doableId, title
     ),
-    remove: id => DoablesListModel.remove(dispatch, id)
+    remove: id => DoableModel.remove(dispatch, id)
   }
 };
 

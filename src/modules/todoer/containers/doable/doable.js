@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Icon from '@material/react-material-icon';
 
-import { DoableModel } from '../../../../models-ref';
-import Button from '../../../../common/components/button/button';
-import TextField from '../../../../common/containers/text-field/text-field';
-import Options from '../../../components/options/options';
-import Aux from '../../../../common/hocs/aux';
+import { DoableModel } from '../../../models-ref';
+import Button from '../../../common/components/button/button';
+import TextField from '../../../common/containers/text-field/text-field';
+import Options from '../../components/options/options';
+import Aux from '../../../common/hocs/aux';
 
 import './doable.scss';
 
@@ -19,8 +19,8 @@ class Doable extends Component {
     };
   }
 
-  update = text => {
-    this.props.updateText(this.props.id, text);
+  update = title => {
+    this.props.updateTitle(this.props.id, title);
     this.setState({editing: false});
   }
 
@@ -42,12 +42,16 @@ class Doable extends Component {
       );
     }
 
+    if (this.props.selected) {
+      classes.push('selected');
+    }
+
     let content;
 
     if (!this.state.editing) {
       content = (
         <Aux>
-          { this.props.text }
+          { this.props.title }
           <Options>
               { CompletionOption }
               <Button clicked={ () => this.setState({editing: true}) }>
@@ -63,7 +67,7 @@ class Doable extends Component {
       content = (
         <TextField 
           fullWidth
-          value={ this.props.text }
+          value={ this.props.title }
           enterKeyDown={ this.update }
           blurred={ () => this.setState({editing: false}) } />
       );
@@ -71,7 +75,8 @@ class Doable extends Component {
 
 
     return (
-      <li className={ classes.join(' ') }>
+      <li className={ classes.join(' ') }
+        onClick={ () => this.props.clicked(this.props.id) }>
         { content }
       </li>
     );
@@ -84,7 +89,7 @@ const mapDispatchToProps = dispatch => {
     remove: id => DoableModel.remove(dispatch, id),
     markComplete: id => DoableModel.markComplete(dispatch, id),
     markInComplete: id => DoableModel.markInComplete(dispatch, id),
-    updateText: (id, text) => DoableModel.updateText(dispatch, id, text)
+    updateTitle: (id, title) => DoableModel.updateTitle(dispatch, id, title)
   }
 };
 
