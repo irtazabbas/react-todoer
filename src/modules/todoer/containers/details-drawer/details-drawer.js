@@ -43,7 +43,7 @@ class DetailsDrawer extends Component {
           doableId={ this.props.doable.id }
         />
         <hr/>
-        <div className="body">
+        <div className="doables">
           <List doables={ this.props.doable.doables }
             doableClicked={ this.props.doableClicked }>
 

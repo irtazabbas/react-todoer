@@ -1,10 +1,10 @@
 @import 'styles/globals';
 @import '@material/typography/mdc-typography';
 
-$drawer-x: 320px;
+$drawer-x: 350px;
 
 .details-drawer {
-  width: 300px;
+  width: $drawer-x;
   min-height: 300px;
   max-height: 80%;
   border-top: solid 2px $mdc-theme-primary;
@@ -15,7 +15,6 @@ $drawer-x: 320px;
   top: 100px;
   right: -$drawer-x;
   z-index: 10;
-  padding: 10px 10px;
   background-color: white;
   transition: 200ms;
 
@@ -25,6 +24,7 @@ $drawer-x: 320px;
   }
 
   header {
+    padding: 10px;
     h4 {
       margin: 0
     }
@@ -32,5 +32,9 @@ $drawer-x: 320px;
     p {
       color: $detail-drawer-p-color
     }
+  }
+
+  .doables {
+    width: 330px;
   }
 }
