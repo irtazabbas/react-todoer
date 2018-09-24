@@ -21,7 +21,7 @@ export const creators = {
     };
   },
 
-  unselectDoable(spaceId) {
+  closeDrawer(spaceId) {
     return {
       type: types.DETAIL_DRAWER_CLOSED,
       payload: { spaceId }

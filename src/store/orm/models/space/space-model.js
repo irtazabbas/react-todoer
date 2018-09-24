@@ -24,8 +24,8 @@ export class SpaceModel extends BaseModel {
     dispatch(creators.selectDoableForDetails(spaceId, doableId));
   }
 
-  static unselectDoable(dispatch, spaceId) {
-    dispatch(creators.unselectDoable(spaceId));
+  static closeDrawer(dispatch, spaceId) {
+    dispatch(creators.closeDrawer(spaceId));
   }
 
   static getDoablesCount(spaceId) {
@@ -72,5 +72,6 @@ SpaceModel.modelName = modelNames.space;
 SpaceModel.fields = {
   id: attr(),
   title: attr(),
-  selectedDoable: oneToOne(modelNames.doable, 'selectedForSpace')
+  drawerOpen: attr(),
+  selectedDoable: oneToOne(modelNames.doable, 'selectedForSpace'),
 };

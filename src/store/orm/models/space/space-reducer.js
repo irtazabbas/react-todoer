@@ -21,10 +21,12 @@ export default (action, Space, session) => {
       );
       break;
     case types.DOABLE_SELECTED_FOR_DETAILS:
-      Space.withId(payload.spaceId).selectedDoable = payload.doableId;
+      let target = Space.withId(payload.spaceId);
+      target.selectedDoable = payload.doableId;
+      target.drawerOpen = true;
       break;
     case types.DETAIL_DRAWER_CLOSED:
-      Space.withId(payload.spaceId).selectedDoable = undefined;
+      Space.withId(payload.spaceId).drawerOpen = false;
       break;
   }
 }
