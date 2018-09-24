@@ -1,6 +1,4 @@
 
-import { random } from '../utils';
-
 const keys = {
   spaces: 'tkv-spaces-',
   spacesKeys: 'tkv-spaces-keys'
@@ -20,7 +18,7 @@ class Storage {
   }
 
   appendSpaceKey(key) {
-    let spaceKeys = (localStorage.getItem(keys.spacesKeys) || '') .split(',');
+    let spaceKeys = (localStorage.getItem(keys.spacesKeys) || '').split(',');
 
     if (spaceKeys.indexOf(key) === -1) {
       spaceKeys.push(key);
