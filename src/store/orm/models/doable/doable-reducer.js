@@ -27,5 +27,11 @@ export default (action, Doable, session) => {
     case types.UPDATE_DOABLE_DESCRIPTION:
       Doable.withId(payload.id).set('description', payload.description);
       break;
+    case types.MINIMIZE_DOABLE:
+      Doable.withId(payload.id).set('minimized', true);
+      break;
+    case types.MAXIMIZE_DOABLE:
+      Doable.withId(payload.id).set('minimized', false);
+      break;
   }
 };

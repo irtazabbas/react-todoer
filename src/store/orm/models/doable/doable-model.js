@@ -36,6 +36,14 @@ export class DoableModel extends BaseModel {
     dispatch(creators.updateDescription(id, description));
   }
 
+  static minimize(dispatch, id) {
+    dispatch(creators.minimize(id));
+  }
+
+  static maximize(dispatch, id) {
+    dispatch(creators.maximize(id));
+  }
+
   /**
    * This method recursively removes a doable and all its children and so on.
    * 
@@ -108,6 +116,7 @@ DoableModel.fields = {
   createdAt: attr(),
   dueDate: attr(),
   complete: attr(),
+  minimized: attr(),
   doable: fk({
     to: modelNames.doable,
     relatedName: 'doables'

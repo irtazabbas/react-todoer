@@ -6,7 +6,9 @@ export const types = {
   MARK_COMPLETE: 'MARK_COMPLETE',
   MARK_INCOMPLETE: 'MARK_INCOMPLETE',
   UPDATE_DOABLE_TITLE: 'UPDATE_DOABLE_TITLE',
-  UPDATE_DOABLE_DESCRIPTION: 'UPDATE_DOABLE_DESCRIPTION'
+  UPDATE_DOABLE_DESCRIPTION: 'UPDATE_DOABLE_DESCRIPTION',
+  MINIMIZE_DOABLE: 'MINIMIZE_DOABLE',
+  MAXIMIZE_DOABLE: 'MAXIMIZE_DOABLE'
 };
 
 
@@ -60,6 +62,20 @@ export const creators = {
     return {
       type: types.UPDATE_DOABLE_DESCRIPTION,
       payload: { id, description }
+    };
+  },
+
+  minimize(id) {
+    return {
+      type: types.MINIMIZE_DOABLE,
+      payload: { id }
+    };
+  },
+
+  maximize(id) {
+    return {
+      type: types.MAXIMIZE_DOABLE,
+      payload: { id }
     };
   }
 };

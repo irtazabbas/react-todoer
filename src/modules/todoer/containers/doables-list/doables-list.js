@@ -21,6 +21,14 @@ class DoablesList extends Component {
     this.props.remove(this.props.data.id);
   }
 
+  minimize = () => {
+    this.props.minimize(this.props.data.id);
+  }
+
+  maximize = () => {
+    this.props.maximize(this.props.data.id);
+  }
+
   render() {
     let classes = ['mdc-card mdc-elevation--z15', 'doables'];
     const doables = this.props.data.doables;
@@ -33,13 +41,24 @@ class DoablesList extends Component {
       <div className={ classes.join(' ') }>
         <DoablesListHead title={ this.props.data.title }
           update={ this.updateTitle }
-          removeList={ this.remove } />
+          removeList={ this.remove }
+          minimize={ this.minimize }
+          maximize={ this.maximize }
+          minimized={ this.props.data.minimized }
+        />
         <div className="body">
-          <List doables={ doables }
-            doableClicked={ this.props.doableClicked }
-            selected={ this.props.selected }>
-            <DoableAdder addDoable={ this.addDoable } />
-          </List>
+          {
+            this.props.data.minimized ?
+              <p>
+                {/*TODO: summary here*/}
+                summary...
+              </p> :
+              <List doables={ doables }
+                doableClicked={ this.props.doableClicked }
+                selected={ this.props.selected }>
+                <DoableAdder addDoable={ this.addDoable } />
+              </List>
+          }
         </div>
       </div>
     );
@@ -54,7 +73,9 @@ const mapDispatchToProps = dispatch => {
     addDoable: (title, doableId) => DoableModel.addToDoable(
       dispatch, doableId, title
     ),
-    remove: id => DoableModel.remove(dispatch, id)
+    remove: id => DoableModel.remove(dispatch, id),
+    minimize: id => DoableModel.minimize(dispatch, id),
+    maximize: id => DoableModel.maximize(dispatch, id)
   }
 };
 

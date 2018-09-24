@@ -43,10 +43,15 @@ export default class DoablesListHead extends Component {
                   { this.props.title }
                 </span>
                 <Options>
-                  {/* TODO: impelement minimization */}
-                  <Button clicked={ () => console.log('minimize list') }>
-                    <Icon icon="minimize" />
-                  </Button>
+                  {
+                    this.props.minimized ?
+                      <Button clicked={ this.props.maximize }>
+                        <Icon icon="unfold_more" />
+                      </Button> :
+                      <Button clicked={ this.props.minimize }>
+                        <Icon icon="unfold_less" />
+                      </Button>
+                  }
                   <Button clicked={ () => this.props.removeList() }>
                     <Icon icon="clear" />
                   </Button>
