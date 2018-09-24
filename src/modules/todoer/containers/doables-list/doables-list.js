@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import DoablesListHead from './doables-list-head/doables-list-head';
 import List from '../list/list';
 import DoableAdder from '../../components/doable-adder/doable-adder';
+import Summary from './summary/summary';
 import { DoableModel } from '../../../models-ref';
 
 import './doables-list.scss';
@@ -45,14 +46,12 @@ class DoablesList extends Component {
           minimize={ this.minimize }
           maximize={ this.maximize }
           minimized={ this.props.data.minimized }
+          minimizable={ !!this.props.data.doables.length }
         />
         <div className="body">
           {
             this.props.data.minimized ?
-              <p>
-                {/*TODO: summary here*/}
-                summary...
-              </p> :
+              <Summary data={ this.props.data } /> :
               <List doables={ doables }
                 doableClicked={ this.props.doableClicked }
                 selected={ this.props.selected }>

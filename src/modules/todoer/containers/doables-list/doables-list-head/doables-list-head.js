@@ -19,6 +19,18 @@ export default class DoablesListHead extends Component {
   }
 
   render() {
+    let minimizeOptions;
+
+    if (this.props.minimizable) {
+      minimizeOptions = this.props.minimized ?
+        <Button clicked={ this.props.maximize }>
+          <Icon icon="unfold_more" />
+        </Button> :
+        <Button clicked={ this.props.minimize }>
+          <Icon icon="unfold_less" />
+        </Button>
+    }
+
     return (
       <header className="
         doables-list-title mdc-top-app-bar mdc-top-app-bar--short
@@ -44,13 +56,7 @@ export default class DoablesListHead extends Component {
                 </span>
                 <Options>
                   {
-                    this.props.minimized ?
-                      <Button clicked={ this.props.maximize }>
-                        <Icon icon="unfold_more" />
-                      </Button> :
-                      <Button clicked={ this.props.minimize }>
-                        <Icon icon="unfold_less" />
-                      </Button>
+                    minimizeOptions
                   }
                   <Button clicked={ () => this.props.removeList() }>
                     <Icon icon="clear" />
