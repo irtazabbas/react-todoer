@@ -31,5 +31,7 @@ export default (action, Space, session) => {
       Space.withId(payload.spaceId).drawerOpen = false;
       break;
 
+    default:
+      break;
   }
 };
