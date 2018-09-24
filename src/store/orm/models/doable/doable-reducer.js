@@ -42,5 +42,8 @@ export default (action, Doable, session) => {
     case types.MAXIMIZE_DOABLE:
       Doable.withId(payload.id).set('minimized', false);
       break;
+
+    default:
+      break;
   }
 };
