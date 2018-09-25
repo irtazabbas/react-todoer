@@ -3,6 +3,7 @@ import { attr, oneToOne } from 'redux-orm';
 import { BaseModel } from '../base-model';
 import { modelNames } from '../dictionary';
 import { creators } from './space-actions';
+import { DoableModel } from '../doable/doable-model';
 import reducer from './space-reducer';
 import storageService from '../../../../services/storage';
 import seedData from '../seed-data';
@@ -60,7 +61,8 @@ export class SpaceModel extends BaseModel {
             list => Object.assign({}, list.ref, {
               doables: list.doables.toModelArray().map(
                 item => Object.assign({}, item.ref, {
-                  hasDoables: !!item.doables.all().count()
+                  hasDoables: !!item.doables.all().count(),
+                  complete: DoableModel.checkCompletionDeep(item)
                 }) 
               )
             })

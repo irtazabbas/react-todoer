@@ -77,6 +77,22 @@ export class DoableModel extends BaseModel {
   }
 
   /**
+   * Returns the completion status (boolean) of a doable, by recursively checking
+   * the children and only returns true if all the children are complete.
+   * 
+   * NOTE: If a doable has doables then its own 'complete' property is ignored,
+   * and its completion depends on its child doables. Hence, its completion
+   * is "derived" based on concrete values from 'complete' property of its children
+   * and/or derived completion status of its children.
+   */
+  static checkCompletionDeep(doable) {
+    const doables = doable.doables.toModelArray();
+
+    return doables.length ?
+      doables.every(i => this.checkCompletionDeep(i)) : doable.complete;
+  }
+
+  /**
    * Creates doables recursively
    * 
    * NOTE: This method seems to error unless called through a session object,
@@ -104,7 +120,8 @@ export class DoableModel extends BaseModel {
         {
           doables: doable.doables.toModelArray().map(
             item => Object.assign({}, item.ref, {
-              hasDoables: !!item.doables.all().count()
+              hasDoables: !!item.doables.all().count(),
+              complete: DoableModel.checkCompletionDeep(item)
             })
           )
         }
