@@ -13,6 +13,7 @@ export default props => {
             complete={ doable.complete }
             clicked={ props.doableClicked }
             selected={ props.selected === doable.id }
+            hasDoables={ doable.hasDoables }
           />
         ))
       }
