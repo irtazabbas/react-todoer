@@ -27,19 +27,25 @@ class Doable extends Component {
   render() {
     let classes = ['mdc-list-item', 'mdc-list-item--disabled', 'doable'];
 
-    let CompletionOption = (
-      <Button clicked={ () => this.props.markComplete(this.props.id) }>
-        <Icon icon="check_box_outline_blank" />
-      </Button>
-    );
-    
-    if (this.props.complete) {
-      classes.push('complete');
-      CompletionOption = (
-        <Button clicked={ () => this.props.markInComplete(this.props.id) }>
-          <Icon icon="check_box" />
-        </Button>
-      );
+    let CompletionOption;
+
+    if (!this.props.hasDoables) {
+      if (this.props.complete) {
+        classes.push('complete');
+        CompletionOption = (
+          <Button clicked={ () => this.props.markInComplete(this.props.id) }>
+            <Icon icon="check_box" />
+          </Button>
+        );
+      } else {
+        CompletionOption = (
+          <Button clicked={ () => this.props.markComplete(this.props.id) }>
+            <Icon icon="check_box_outline_blank" />
+          </Button>
+        );
+      }
+    } else {
+      classes.push('has-doables');
     }
 
     if (this.props.selected) {
