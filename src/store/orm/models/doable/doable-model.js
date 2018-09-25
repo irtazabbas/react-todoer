@@ -101,7 +101,13 @@ export class DoableModel extends BaseModel {
       return Object.assign(
         {},
         doable.ref,
-        { doables: doable.doables.toRefArray() }
+        {
+          doables: doable.doables.toModelArray().map(
+            item => Object.assign({}, item.ref, {
+              hasDoables: !!item.doables.all().count()
+            })
+          )
+        }
       );
     }
   ]
