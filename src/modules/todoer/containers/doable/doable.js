@@ -31,7 +31,6 @@ class Doable extends Component {
 
     if (!this.props.hasDoables) {
       if (this.props.complete) {
-        classes.push('complete');
         CompletionOption = (
           <Button clicked={ () => this.props.markInComplete(this.props.id) }>
             <Icon icon="check_box" />
@@ -47,6 +46,8 @@ class Doable extends Component {
     } else {
       classes.push('has-doables');
     }
+
+    if (this.props.complete) classes.push('complete');
 
     if (this.props.selected) {
       classes.push('selected');
