@@ -58,7 +58,11 @@ export class SpaceModel extends BaseModel {
         {
           doables: space.doables.toModelArray().map(
             list => Object.assign({}, list.ref, {
-              doables: list.doables.toRefArray()
+              doables: list.doables.toModelArray().map(
+                item => Object.assign({}, item.ref, {
+                  hasDoables: !!item.doables.all().count()
+                }) 
+              )
             })
           )
         }
