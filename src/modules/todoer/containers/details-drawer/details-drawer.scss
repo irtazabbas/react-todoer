@@ -19,7 +19,7 @@ $drawer-x: 350px;
   transition: 200ms;
 
   &.open {
-    transform: translateX(-$drawer-x);
+    transform: translateX(-($drawer-x + 10px));
     transition: 400ms;
   }
 
