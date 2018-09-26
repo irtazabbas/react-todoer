@@ -146,10 +146,14 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include: [
+              paths.appSrc,
+              paths.appNodeModules + '/@material/base',
+              paths.appNodeModules + '/@material/ripple',
+            ],
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               compact: true,
             },
           },
@@ -166,6 +170,11 @@ module.exports = {
               },
               {
                 loader: require.resolve('sass-loader'),
+                options: {
+                  includePaths: [
+                    'node_modules', 'src', '.'
+                  ]
+                },
               },
               {
                 loader: require.resolve('postcss-loader'),
