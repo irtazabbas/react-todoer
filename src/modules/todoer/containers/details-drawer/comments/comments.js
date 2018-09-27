@@ -8,7 +8,6 @@ import './comments.scss';
 
 export default props => {
   const comments = props.comments || [];
-  console.log('comments', comments);
   return (
     <div className="comments">
       <div className="icon">
