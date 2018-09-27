@@ -30,7 +30,7 @@ const Comment = props => {
           </Aux> :
           <TextArea
             fullWidth
-            value={ props.content }   
+            value={ props.content }
           />
       }
     </div>
