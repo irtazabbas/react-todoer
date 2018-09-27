@@ -1,0 +1,29 @@
+.comment {
+  .content {
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 15px;
+    color: gray;
+    overflow: hidden;
+
+    li {
+      float: left;
+      padding: 0 5px;
+
+      &.action {
+        cursor: pointer;
+        display: none;
+      }
+    }
+  }
+
+  &:hover {
+    .action {
+      display: list-item;
+    }
+  }
+}
