@@ -3,8 +3,19 @@
 
 // TODO: update
 .text-area {
+  border: none;
+  box-shadow: 0 0px 8px #a7a7a7;
+
   textarea {
-    padding: 10px !important
+    padding: 10px !important;
+
+    &:focus {
+      border: none;
+    }
+
+    &.no-resize {
+      resize: none;
+    }
   }
 }
 

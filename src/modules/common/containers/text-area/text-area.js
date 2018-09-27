@@ -13,6 +13,21 @@ export default class TextArea extends Component {
     this.input = React.createRef();
   }
 
+  componentDidMount() {
+    if (this.props.autoHeight !== false) {
+      const textarea = this.input.current;
+
+      ['change', 'cut', 'paste', 'drop', 'keydown'].forEach(
+        event => textarea.addEventListener(event, () => {
+          setTimeout(() => {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 10 +'px';
+          })
+        })
+      );
+    }
+  }
+
   handleDone = () => {
     const value = this.input.current.value;
     if (value) {
@@ -42,6 +57,10 @@ export default class TextArea extends Component {
       parentClasses.push('mdc-text-field--fullwidth');
     }
 
+    if (this.props.autoHeight !== false) {
+      inputClasses.push('no-resize');
+    }
+
     return (
       <Aux>
         <div className={ parentClasses.join(' ') }>
@@ -51,7 +70,8 @@ export default class TextArea extends Component {
             ref={ this.input }
             placeholder={ this.props.placeholder || 'type here' }
             defaultValue={ this.props.value }
-            onBlur={ this.handleBlur }>
+            onBlur={ this.handleBlur }
+            rows={ this.props.rows || 2 }>
           </textarea>
         </div>
         <div className="actions">
