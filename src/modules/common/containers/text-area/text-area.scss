@@ -4,7 +4,10 @@
 // TODO: update
 .text-area {
   border: none;
-  box-shadow: 0 0px 8px #a7a7a7;
+
+  &:focus-within {
+    box-shadow: 0 0px 8px #a7a7a7;
+  }
 
   textarea {
     padding: 10px !important;
@@ -23,4 +26,8 @@
   &.no-padding {
     padding: 0 !important
   }
+}
+
+.actions.hidden {
+  display: none;
 }

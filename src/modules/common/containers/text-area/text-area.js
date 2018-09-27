@@ -7,6 +7,9 @@ import Button from '../../components/button/button';
 import './text-area.scss';
 
 export default class TextArea extends Component {
+  state = {
+    hideActions: false
+  }
   
   constructor() {
     super();
@@ -14,8 +17,18 @@ export default class TextArea extends Component {
   }
 
   componentDidMount() {
+    const textarea = this.input.current;
+
+    if (this.props.preciseActionDisplay) {
+      textarea.addEventListener('keydown', () => {
+        // timeout to make sure textarea.value is latest
+        setTimeout(() => {
+          this.setState({ hideActions: !textarea.value });
+        })
+      });
+    }
+
     if (this.props.autoHeight !== false) {
-      const textarea = this.input.current;
 
       ['change', 'cut', 'paste', 'drop', 'keydown'].forEach(
         event => textarea.addEventListener(event, () => {
@@ -32,6 +45,7 @@ export default class TextArea extends Component {
     const value = this.input.current.value;
     if (value) {
       this.props.done(value);
+      this.clear();
     }
   }
 
@@ -41,6 +55,13 @@ export default class TextArea extends Component {
       this.props.done(event.target.value);
     }
     this.props.blurred && this.props.blurred();
+  }
+
+  clear = () => {
+    this.input.current.value = '';
+    // calling set state here to trigger render so that actions can be hidden
+    // if action hiding is enabled
+    this.setState({});
   }
 
   render() {
@@ -61,19 +82,13 @@ export default class TextArea extends Component {
       inputClasses.push('no-resize');
     }
 
-    return (
-      <Aux>
-        <div className={ parentClasses.join(' ') }>
-          <textarea type="text"
-            autoFocus
-            className={ inputClasses.join(' ') }
-            ref={ this.input }
-            placeholder={ this.props.placeholder || 'type here' }
-            defaultValue={ this.props.value }
-            onBlur={ this.handleBlur }
-            rows={ this.props.rows || 2 }>
-          </textarea>
-        </div>
+    // TODO: hiding action has turned ugly, refactor
+    let actions;
+    if (
+      !this.state.hideActions &&
+      (!this.props.preciseActionDisplay || !!(this.input.current || {}).value)
+    ) {
+      actions = (
         <div className="actions">
           <Button clicked={ this.handleDone }>
             <Icon icon="check" />
@@ -82,6 +97,23 @@ export default class TextArea extends Component {
             <Icon icon="clear" />
           </Button>
         </div>
+      );
+    }
+
+    return (
+      <Aux>
+        <div className={ parentClasses.join(' ') }>
+          <textarea type="text"
+            autoFocus={ this.props.autoFocus !== false }
+            className={ inputClasses.join(' ') }
+            ref={ this.input }
+            placeholder={ this.props.placeholder || 'type here' }
+            defaultValue={ this.props.value }
+            onBlur={ this.handleBlur }
+            rows={ this.props.rows || 2 }>
+          </textarea>
+        </div>
+        { actions }
       </Aux>
     );
   }
