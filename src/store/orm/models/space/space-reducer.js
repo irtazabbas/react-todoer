@@ -14,7 +14,8 @@ export default (action, Space, session) => {
 
           (space.doables || []).forEach(
             doable => session.doable.createDoablesDeep(
-              Object.assign(doable, { space: newSpace.id })
+              Object.assign(doable, { space: newSpace.id }),
+              session
             )
           );
         }

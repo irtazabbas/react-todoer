@@ -71,7 +71,8 @@ export class DoableModel extends BaseModel {
       {
         doables: doable.doables.toModelArray().map(
           item => DoableModel.getDoablesDeep(item)
-        )
+        ),
+        comments: doable.comments.toRefArray()
       }
     );
   }
@@ -98,11 +99,14 @@ export class DoableModel extends BaseModel {
    * NOTE: This method seems to error unless called through a session object,
    * like `removeRecursively` method.
    */
-  static createDoablesDeep(doable) {
+  static createDoablesDeep(doable, session) {
     this.create(doable);
+    (doable.comments || []).forEach(comment => {
+      session.comment.create(comment);
+    });
 
     (doable.doables || []).forEach(item => {
-      this.createDoablesDeep(item);
+      this.createDoablesDeep(item, session);
     });
   }
 
@@ -123,7 +127,8 @@ export class DoableModel extends BaseModel {
               hasDoables: !!item.doables.all().count(),
               complete: DoableModel.checkCompletionDeep(item)
             })
-          )
+          ),
+          comments: doable.comments.toRefArray()
         }
       );
     }
