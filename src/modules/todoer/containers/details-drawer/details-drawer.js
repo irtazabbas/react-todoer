@@ -5,6 +5,7 @@ import Head from './head/head';
 import { DoableModel } from '../../../models-ref';
 import List from '../list/list';
 import DoableAdder from '../../components/doable-adder/doable-adder';
+import Comments from './comments/comments';
 
 import './details-drawer.scss';
 
@@ -36,24 +37,31 @@ class DetailsDrawer extends Component {
   
     return (
       // TODO: replace palceholder data and make it editable
-      <aside className={topClasses}>
+      <div className={topClasses}>
         <Head
           title={ this.props.doable.title }
           description={ this.props.doable.description }
           doableId={ this.props.doable.id }
         />
         <hr/>
-        <div className="doables">
-          <List doables={ this.props.doable.doables }
-            doableClicked={ this.props.doableClicked }>
+        <div className="body">
+          <div className="doables">
+            <List doables={ this.props.doable.doables }
+              doableClicked={ this.props.doableClicked }>
 
-            <DoableAdder addDoable={ this.addDoable } />
-            
-          </List>
+              <DoableAdder addDoable={ this.addDoable } />
+              
+            </List>
+          </div>
+          <hr/>
+          {/* TODO: do the close button properly */}
+          <button onClick={ this.props.close }>close</button>
+          <Comments
+            comments={ this.props.doable.comments }
+            doableId={ this.props.doable.id }
+          />
         </div>
-        {/* TODO: do the close button properly */}
-        <button onClick={ this.props.close }>close</button>
-      </aside>
+      </div>
     );
   }
 }
