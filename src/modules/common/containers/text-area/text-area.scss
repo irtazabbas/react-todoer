@@ -19,6 +19,10 @@
     &.no-resize {
       resize: none;
     }
+
+    &.grayish {
+      background-color: #e7e7e7;
+    }
   }
 }
 

@@ -82,6 +82,10 @@ export default class TextArea extends Component {
       inputClasses.push('no-resize');
     }
 
+    if (this.props.grayish) {
+      inputClasses.push('grayish');
+    }
+
     // TODO: hiding action has turned ugly, refactor
     let actions;
     if (
