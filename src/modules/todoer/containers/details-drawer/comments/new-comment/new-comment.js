@@ -13,6 +13,7 @@ const newComment = props => {
       fullWidth
       preciseActionDisplay
       rows="2"
+      grayish
 
       done={ value => props.newComment(props.doableId, value) }
       cancelled={ () => textAreaRef.current.clear() }
