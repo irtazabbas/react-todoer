@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Icon from '@material/react-material-icon';
 
 import Head from './head/head';
 import { DoableModel } from '../../../models-ref';
 import List from '../list/list';
 import DoableAdder from '../../components/doable-adder/doable-adder';
 import Comments from './comments/comments';
+import Button from '../../../common/components/button/button';
 
 import './details-drawer.scss';
 
@@ -28,36 +30,49 @@ class DetailsDrawer extends Component {
   }
 
   render() {
-    let topClasses = [
-      'details-drawer',
-      'mdc-elevation--z15',
-      'mdc-typography',
+    const containerClasses = [
+      'details-drawer-container',
       (this.props.open ? 'open' : '')
     ].join(' ').trim();
-  
+
+    const drawerClasses = [
+      'details-drawer',
+      'mdc-elevation--z15',
+      'mdc-typography'
+    ].join(' ');
+
     return (
       // TODO: replace palceholder data and make it editable
-      <div className={topClasses}>
-        <Head
-          title={ this.props.doable.title }
-          description={ this.props.doable.description }
-          doableId={ this.props.doable.id }
-        />
-        <div className="body">
-          <div className="doables">
-            <List doables={ this.props.doable.doables }
-              doableClicked={ this.props.doableClicked }>
-
-              <DoableAdder addDoable={ this.addDoable } />
-              
-            </List>
-          </div>
-          {/* TODO: do the close button properly */}
-          <button onClick={ this.props.close }>close</button>
-          <Comments
-            comments={ this.props.doable.comments }
+      <div className={ containerClasses }>
+        <div className="details-drawer-controls">
+          <Button clicked={ this.props.close }>
+            <Icon icon="clear" />
+          </Button>
+          {/* TODO: implement */}
+          {/* <Button>
+            <Icon icon="arrow_back" />
+          </Button> */}
+        </div>
+        <div className={ drawerClasses }>
+          <Head
+            title={ this.props.doable.title }
+            description={ this.props.doable.description }
             doableId={ this.props.doable.id }
           />
+          <div className="body">
+            <div className="doables">
+              <List doables={ this.props.doable.doables }
+                doableClicked={ this.props.doableClicked }>
+
+                <DoableAdder addDoable={ this.addDoable } />
+                
+              </List>
+            </div>
+            <Comments
+              comments={ this.props.doable.comments }
+              doableId={ this.props.doable.id }
+            />
+          </div>
         </div>
       </div>
     );
