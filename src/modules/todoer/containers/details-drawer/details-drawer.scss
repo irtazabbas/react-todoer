@@ -1,7 +1,7 @@
 @import 'styles/globals';
 @import '@material/typography/mdc-typography';
 
-$drawer-x: 350px;
+$drawer-x: 30%;
 
 .details-drawer {
   width: $drawer-x;
@@ -21,7 +21,7 @@ $drawer-x: 350px;
   transition: 200ms;
 
   &.open {
-    transform: translateX(-($drawer-x + 10px));
+    transform: translateX(-102%);
     transition: 400ms;
   }
 
@@ -37,6 +37,6 @@ $drawer-x: 350px;
   }
 
   .body > .doables {
-    width: 330px;
+    width: 95%;
   }
 }
