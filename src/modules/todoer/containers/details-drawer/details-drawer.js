@@ -43,7 +43,6 @@ class DetailsDrawer extends Component {
           description={ this.props.doable.description }
           doableId={ this.props.doable.id }
         />
-        <hr/>
         <div className="body">
           <div className="doables">
             <List doables={ this.props.doable.doables }
@@ -53,7 +52,6 @@ class DetailsDrawer extends Component {
               
             </List>
           </div>
-          <hr/>
           {/* TODO: do the close button properly */}
           <button onClick={ this.props.close }>close</button>
           <Comments
