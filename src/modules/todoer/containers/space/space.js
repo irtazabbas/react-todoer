@@ -21,7 +21,7 @@ class Space extends Component {
   }
 
   render() {
-    const { selectedDoables, drawerOpen } = this.props.data;
+    const { id, selectedDoables, drawerOpen } = this.props.data;
     const selectedDoable = selectedDoables[selectedDoables.length - 1];
     
     return (
@@ -31,6 +31,8 @@ class Space extends Component {
           open={ !!selectedDoable && drawerOpen }
           close={ this.closeDrawer }
           doableClicked={ this.onDoableClicked }
+          goBack={ () => this.props.onBackClicked(id) }
+          showBack={ selectedDoables.length > 1 }
         />
         {
           this.props.data.doables.map(
@@ -53,7 +55,8 @@ const mapDispatchToProps = dispatch => {
     onDoableClicked: (spaceId, doableId) => SpaceModel.setSelectedDoables(
       dispatch, spaceId, doableId
     ),
-    closeDrawer: spaceId => SpaceModel.closeDrawer(dispatch, spaceId)
+    closeDrawer: spaceId => SpaceModel.closeDrawer(dispatch, spaceId),
+    onBackClicked: spaceId => SpaceModel.popSelectedDoables(dispatch, spaceId)
   }
 };
 

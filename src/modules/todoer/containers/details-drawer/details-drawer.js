@@ -48,10 +48,13 @@ class DetailsDrawer extends Component {
           <Button clicked={ this.props.close }>
             <Icon icon="clear" />
           </Button>
-          {/* TODO: implement */}
-          {/* <Button>
-            <Icon icon="arrow_back" />
-          </Button> */}
+          {
+            this.props.showBack && (
+              <Button clicked={ this.props.goBack }>
+                <Icon icon="arrow_back" />
+              </Button>
+            )
+          }
         </div>
         <div className={ drawerClasses }>
           <Head
