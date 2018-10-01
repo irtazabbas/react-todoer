@@ -29,6 +29,11 @@ export class SpaceModel extends BaseModel {
     dispatch(creators.closeDrawer(spaceId));
   }
 
+  static popSelectedDoables(dispatch, spaceId) {
+    dispatch(creators.popSelectedDoable(spaceId));
+  }
+
+
   static getDoablesCount(spaceId) {
     return this.withId(spaceId).doables.all().count();
   }

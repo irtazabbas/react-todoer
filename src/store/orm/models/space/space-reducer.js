@@ -41,6 +41,14 @@ export default (action, Space, session) => {
       Space.withId(payload.spaceId).drawerOpen = false;
       break;
 
+    case types.POP_SELECTED_DOABLES: {
+      const target = Space.withId(payload.spaceId);
+      const selected = [...target.selectedDoables];
+      selected.pop();
+      target.selectedDoables = selected;
+      break;
+    }
+
     default:
       break;
   }
