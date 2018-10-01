@@ -1,4 +1,4 @@
-import { attr, oneToOne } from 'redux-orm';
+import { attr } from 'redux-orm';
 
 import { BaseModel } from '../base-model';
 import { modelNames } from '../dictionary';
