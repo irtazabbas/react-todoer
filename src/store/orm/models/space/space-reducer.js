@@ -23,9 +23,18 @@ export default (action, Space, session) => {
       break;
 
     case types.DOABLE_SELECTED_FOR_DETAILS:
-      let target = Space.withId(payload.spaceId);
-      target.selectedDoable = payload.doableId;
-      target.drawerOpen = true;
+      const { spaceId, doableId } = payload;
+
+      let target = Space.withId(spaceId);
+      const selected = [].concat(target.selectedDoables);
+      const index = selected.lastIndexOf(doableId);
+
+      if (index === -1 || index !== selected.length - 1) {
+        if (selected.length === 20) selected.splice(0, 1);
+        selected.push(doableId);
+        target.selectedDoables = selected;
+        target.drawerOpen = true;
+      }
       break;
 
     case types.DETAIL_DRAWER_CLOSED:

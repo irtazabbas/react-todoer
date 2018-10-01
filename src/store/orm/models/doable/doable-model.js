@@ -115,8 +115,12 @@ export class DoableModel extends BaseModel {
       const space = session.meta.getSpace();
       if (!space) return {};
 
-      const doable = space.selectedDoable;
-      if (!doable) return {};
+      const selected = space.selectedDoables || [];
+
+      const doableId = selected[selected.length - 1];
+      if (doableId === undefined) return {};
+
+      const doable = session.doable.withId(doableId);
 
       return Object.assign(
         {},

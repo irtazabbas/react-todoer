@@ -21,7 +21,8 @@ class Space extends Component {
   }
 
   render() {
-    const { selectedDoable, drawerOpen } = this.props.data;
+    const { selectedDoables, drawerOpen } = this.props.data;
+    const selectedDoable = selectedDoables[selectedDoables.length - 1];
     
     return (
       <div className="space">
@@ -37,7 +38,7 @@ class Space extends Component {
               key={ dl.id }
               data={ dl }
               doableClicked={ this.onDoableClicked }
-              selected={ drawerOpen && selectedDoable  }
+              selected={ drawerOpen && selectedDoable }
             />
           )
         }
@@ -49,7 +50,7 @@ class Space extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onNewList: spaceId => DoableModel.addToSpace(dispatch, spaceId),
-    onDoableClicked: (spaceId, doableId) => SpaceModel.setSelectedDoable(
+    onDoableClicked: (spaceId, doableId) => SpaceModel.setSelectedDoables(
       dispatch, spaceId, doableId
     ),
     closeDrawer: spaceId => SpaceModel.closeDrawer(dispatch, spaceId)

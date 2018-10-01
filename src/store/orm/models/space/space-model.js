@@ -21,7 +21,7 @@ export class SpaceModel extends BaseModel {
     }
   }
 
-  static setSelectedDoable(dispatch, spaceId, doableId) {
+  static setSelectedDoables(dispatch, spaceId, doableId) {
     dispatch(creators.selectDoableForDetails(spaceId, doableId));
   }
 
@@ -79,5 +79,7 @@ SpaceModel.fields = {
   id: attr(),
   title: attr(),
   drawerOpen: attr(),
-  selectedDoable: oneToOne(modelNames.doable, 'selectedForSpace'),
+  selectedDoables: attr({
+    getDefault: () => []
+  }),
 };
