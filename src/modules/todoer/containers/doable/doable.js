@@ -91,7 +91,7 @@ const mapDispatchToProps = dispatch => {
     markComplete: id => DoableModel.markComplete(dispatch, id),
     markInComplete: id => DoableModel.markInComplete(dispatch, id),
     updateTitle: (id, title) => DoableModel.updateTitle(dispatch, id, title)
-  }
+  };
 };
 
 export default connect(null, mapDispatchToProps)(Doable);
