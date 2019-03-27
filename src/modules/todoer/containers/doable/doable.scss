@@ -1,6 +1,9 @@
 
 .doable {
   transition: 0.2s;
+  height: inherit !important;
+  min-height: 48px;
+
   &.selected {
     box-shadow: 0 3px 6px #a7a7a7;
   }
