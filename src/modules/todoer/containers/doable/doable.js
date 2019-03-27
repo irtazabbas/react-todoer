@@ -26,7 +26,7 @@ class Doable extends Component {
   render() {
     let classes = ['mdc-list-item', 'mdc-list-item--disabled', 'doable'];
 
-    let CompletionOption;
+    let CompletionOption, content;
 
     if (!this.props.hasDoables) {
       if (this.props.complete) {
@@ -51,8 +51,6 @@ class Doable extends Component {
     if (this.props.selected) {
       classes.push('selected');
     }
-
-    let content;
 
     if (!this.state.editing) {
       content = (
