@@ -6,7 +6,6 @@ import { DoableModel } from '../../../models-ref';
 import Button from '../../../common/components/button/button';
 import TextField from '../../../common/containers/text-field/text-field';
 import Options from '../../components/options/options';
-import Aux from '../../../common/hocs/aux';
 
 import './doable.scss';
 
@@ -57,8 +56,9 @@ class Doable extends Component {
 
     if (!this.state.editing) {
       content = (
-        <Aux>
-          { this.props.title }
+        <li className={ classes.join(' ') }
+          onClick={ () => this.props.clicked(this.props.id) }>
+            { this.props.title }
           <Options>
               { CompletionOption }
               <Button clicked={ () => this.setState({editing: true}) }>
@@ -68,25 +68,21 @@ class Doable extends Component {
                 <Icon icon="clear" />
               </Button>
           </Options>
-        </Aux>
+        </li>
       );
     } else {
       content = (
-        <TextField 
-          fullWidth
-          value={ this.props.title }
-          enterKeyDown={ this.update }
-          blurred={ () => this.setState({editing: false}) } />
+        <li className={ classes.join(' ') }>
+          <TextField 
+            fullWidth
+            value={ this.props.title }
+            enterKeyDown={ this.update }
+            blurred={ () => this.setState({editing: false}) } />
+        </li>
       );
     }
 
-
-    return (
-      <li className={ classes.join(' ') }
-        onClick={ () => this.props.clicked(this.props.id) }>
-        { content }
-      </li>
-    );
+    return content;
   }
 };
 
