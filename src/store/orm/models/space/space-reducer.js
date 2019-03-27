@@ -33,8 +33,8 @@ export default (action, Space, session) => {
         if (selected.length === 20) selected.splice(0, 1);
         selected.push(doableId);
         target.selectedDoables = selected;
-        target.drawerOpen = true;
       }
+      !target.drawerOpen && (target.drawerOpen = true);
       break;
 
     case types.DETAIL_DRAWER_CLOSED:
