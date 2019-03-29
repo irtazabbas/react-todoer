@@ -14,7 +14,7 @@ import { Todoer } from './modules/todoer';
 
 export default () => (
   <Switch>
-    <Route exact path="/account" component={Accounts} />
-    <Route path="/" component={Todoer} />
+    <Route exact path="/account" component={ Accounts } />
+    <Route path="/" component={ Todoer } />
   </Switch>
 );

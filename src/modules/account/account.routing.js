@@ -5,6 +5,7 @@ import Aux from '../common/hocs/aux';
 
 export default props => (
   <Aux>
+    {/* TODO: implement */}
     <p> Account routes here </p>
   </Aux>
 );
