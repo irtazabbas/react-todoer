@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 import { SpaceModel } from '../../../models-ref';
 import Space from '../space/space';
@@ -15,7 +16,11 @@ class TodoerMain extends Component {
 
     return (
       <Aux>
-        <Space data={ this.props.space } />
+        <Switch>
+          <Route exact route="/" render={
+            props => <Space data={ this.props.space } />
+          } />
+        </Switch>
 
         {/* Some control for switching between spaces will go here */}
       </Aux>

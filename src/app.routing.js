@@ -9,10 +9,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Accounts } from './areas/account';
+import { Accounts } from './modules/account';
+import { Todoer } from './modules/todoer';
 
 export default () => (
   <Switch>
-    <Route path="/account" component={Accounts} />
+    <Route exact path="/account" component={Accounts} />
+    <Route path="/" component={Todoer} />
   </Switch>
 );

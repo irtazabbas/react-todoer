@@ -1,5 +1,5 @@
 /**
- * @fileOverview Grabs and explicitly exposes all the stuff from account area 
+ * @fileOverview Grabs and explicitly exposes all the stuff from account module 
  * that needs to be exposed
  */
 
