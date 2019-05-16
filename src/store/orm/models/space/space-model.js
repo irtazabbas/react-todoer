@@ -33,6 +33,19 @@ export class SpaceModel extends BaseModel {
     dispatch(creators.popSelectedDoable(spaceId));
   }
 
+  static removeFromSelected(spaceId, doableId) {
+    const space = this.withId(spaceId);
+    if (!space) return;
+
+    const index = (space.selectedDoables || []).indexOf(doableId);
+    if (index < 0) return;
+
+    let selected = [...space.selectedDoables];
+    selected.splice(index, 1);
+
+    space.selectedDoables = selected;
+  }
+
 
   static getDoablesCount(spaceId) {
     return this.withId(spaceId).doables.all().count();

@@ -62,6 +62,8 @@ export class DoableModel extends BaseModel {
     );
 
     current.delete();
+
+    this._session.meta.removeFromSelected(id);
   }
 
   static getDoablesDeep(doable) {

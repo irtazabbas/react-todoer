@@ -10,6 +10,14 @@ export class MetaModel extends BaseModel {
     if (!meta) return;
     else return meta.selectedSpace;
   }
+
+  static removeFromSelected(doableId) {
+    const meta = this.all().toModelArray()[0];
+    if (!meta) return;
+    else this._session.space.removeFromSelected(
+      meta.selectedSpace.id, doableId
+    );
+  }
 }
 
 MetaModel.modelName = modelNames.meta;

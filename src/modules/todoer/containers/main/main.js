@@ -18,7 +18,7 @@ class TodoerMain extends Component {
       <Aux>
         <Switch>
           <Route exact route="/" render={
-            props => <Space data={ this.props.space } />
+            props => <Space data={ this.props.space } { ...props } />
           } />
         </Switch>
 
